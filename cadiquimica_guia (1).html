@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadiquímica — Guia do Representante</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #0a5c44;
+    --green-mid: #0f6e56;
+    --green-light: #1d9e75;
+    --green-pale: #e1f5ee;
+    --green-chip: #5dcaa5;
+    --teal: #085041;
+    --amber: #412402;
+    --amber-light: #faeeda;
+    --amber-border: #ef9f27;
+    --blue-dark: #042c53;
+    --blue-light: #e6f1fb;
+    --blue-border: #85b7eb;
+    --purple-dark: #26215c;
+    --purple-light: #eeedfe;
+    --purple-border: #afa9ec;
+    --coral-dark: #4a1b0c;
+    --coral-light: #faece7;
+    --coral-border: #f0997b;
+    --bg: #f5f4f0;
+    --surface: #ffffff;
+    --border: rgba(0,0,0,0.10);
+    --border-strong: rgba(0,0,0,0.18);
+    --text: #1a1a18;
+    --text-muted: #6b6b65;
+    --text-hint: #9a9a94;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--green-dark);
+    padding: 1.25rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--green-chip); }
+  .tagline {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+  }
+
+  /* MAIN LAYOUT */
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: calc(100vh - 64px);
+  }
+
+  /* SIDEBAR */
+  aside {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 1rem;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-hint);
+    margin-bottom: 8px;
+    padding-left: 8px;
+  }
+  .seg-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    margin-bottom: 2px;
+    transition: background 0.15s;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+  }
+  .seg-btn:hover { background: var(--bg); color: var(--text); }
+  .seg-btn.active { background: var(--green-pale); color: var(--green-dark); font-weight: 500; }
+  .seg-btn .ico {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .seg-btn.active .ico { background: var(--green-pale); }
+  .seg-btn .seg-name { font-size: 13px; line-height: 1.3; }
+  .seg-btn .prod-count {
+    margin-left: auto;
+    font-size: 11px;
+    background: var(--bg);
+    color: var(--text-hint);
+    padding: 2px 7px;
+    border-radius: 20px;
+    flex-shrink: 0;
+  }
+  .seg-btn.active .prod-count { background: var(--green-light); color: #fff; }
+
+  /* MAIN CONTENT */
+  main {
+    padding: 2rem;
+    overflow-y: auto;
+  }
+
+  /* SEG HEADER */
+  .seg-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: none;
+  }
+  .seg-header.active { display: block; }
+  .seg-header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 4px;
+  }
+  .seg-header p {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .chip {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--green-chip);
+    background: var(--green-pale);
+    color: var(--teal);
+    font-weight: 500;
+  }
+  .tip {
+    font-size: 13px;
+    color: var(--text);
+    border-left: 3px solid var(--green-light);
+    padding: 10px 14px;
+    background: var(--green-pale);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    line-height: 1.6;
+  }
+  .tip strong { color: var(--green-dark); }
+
+  /* SEARCH BAR */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .search-wrap input {
+    width: 100%;
+    padding: 10px 16px 10px 40px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    font-size: 14px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-wrap input:focus { border-color: var(--green-light); }
+  .search-wrap::before {
+    content: '🔍';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    pointer-events: none;
+  }
+  .prod-count-label {
+    font-size: 12px;
+    color: var(--text-hint);
+    margin-bottom: 12px;
+  }
+
+  /* PRODUCT GRID */
+  .prod-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+  }
+
+  .pcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    overflow: hidden;
+  }
+  .pcard:hover { border-color: var(--border-strong); }
+  .pcard.open { border-color: var(--green-light); }
+
+  .pcard-head {
+    padding: 1rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    user-select: none;
+  }
+  .pcard-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .ptags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; }
+  .ptag {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    border: 1px solid;
+    font-weight: 500;
+  }
+  .t-cos { background: var(--green-pale); color: var(--teal); border-color: var(--green-chip); }
+  .t-ali { background: var(--amber-light); color: var(--amber); border-color: var(--amber-border); }
+  .t-far { background: var(--blue-light); color: var(--blue-dark); border-color: var(--blue-border); }
+  .t-ger { background: var(--purple-light); color: var(--purple-dark); border-color: var(--purple-border); }
+  .t-dom { background: var(--coral-light); color: var(--coral-dark); border-color: var(--coral-border); }
+  .chev {
+    font-size: 18px;
+    color: var(--text-hint);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .pcard.open .chev { transform: rotate(180deg); }
+
+  .pcard-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+  }
+  .pcard.open .pcard-body { display: block; }
+  .pcard-body-inner { padding-top: 12px; }
+  .dlabel {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-hint);
+    margin-bottom: 4px;
+    margin-top: 12px;
+  }
+  .dlabel:first-child { margin-top: 0; }
+  .pcard-body p { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .pcard-body .ex {
+    font-size: 12px;
+    color: var(--text-muted);
+    background: var(--bg);
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    margin-top: 4px;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .pcard-body .ex::before { content: '💡 '; font-style: normal; }
+
+  /* GLOSSARY TERMS */
+  .gterm {
+    color: var(--green-mid);
+    border-bottom: 1.5px dashed var(--green-chip);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.1s;
+  }
+  .gterm:hover { color: var(--green-dark); }
+
+  /* MODAL */
+  .modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .modal-bg.on { display: flex; }
+  .modal {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    max-width: 380px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .modal h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    color: var(--green-dark);
+    margin-bottom: 10px;
+  }
+  .modal p { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: var(--bg);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    transition: background 0.1s;
+  }
+  .modal-close:hover { background: var(--border); }
+
+  /* EMPTY STATE */
+  .empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-hint);
+    grid-column: 1/-1;
+  }
+  .empty .emoji { font-size: 32px; margin-bottom: 8px; }
+
+  /* WELCOME */
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 2rem;
+  }
+  .welcome .big { font-size: 48px; margin-bottom: 1rem; }
+  .welcome h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+  }
+  .welcome p { color: var(--text-muted); font-size: 14px; max-width: 360px; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    aside {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 1rem;
+    }
+    .seg-btn { width: auto; flex: 0 0 auto; padding: 8px 12px; }
+    .seg-btn .ico { width: 24px; height: 24px; font-size: 12px; }
+    .sidebar-label { display: none; }
+    main { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">cadi<span>química</span></div>
+    <div class="tagline">Guia do Representante Comercial</div>
+  </div>
+</header>
+
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-label">Segmentos</div>
+    <button class="seg-btn" onclick="selectSeg('cos',this)">
+      <span class="ico">✨</span>
+      <span class="seg-name">Cosméticos</span>
+      <span class="prod-count" id="cnt-cos">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('ali',this)">
+      <span class="ico">🥗</span>
+      <span class="seg-name">Alimentos e Bebidas</span>
+      <span class="prod-count" id="cnt-ali">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('far',this)">
+      <span class="ico">💊</span>
+      <span class="seg-name">Farmacêuticos e Vet.</span>
+      <span class="prod-count" id="cnt-far">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('dom',this)">
+      <span class="ico">🧴</span>
+      <span class="seg-name">Domissanitários</span>
+      <span class="prod-count" id="cnt-dom">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('tex',this)">
+      <span class="ico">👕</span>
+      <span class="seg-name">Têxtil / Corantes</span>
+      <span class="prod-count" id="cnt-tex">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('lit',this)">
+      <span class="ico">⚛️</span>
+      <span class="seg-name">Sais de Lítio</span>
+      <span class="prod-count" id="cnt-lit">0</span>
+    </button>
+  </aside>
+
+  <!-- MAIN -->
+  <main id="main-area">
+    <div class="welcome" id="welcome">
+      <div class="big">🧪</div>
+      <h2>Selecione um segmento</h2>
+      <p>Escolha o segmento do cliente na lista ao lado para ver os produtos que você pode vender e dicas de abordagem.</p>
+    </div>
+
+    <!-- SEG HEADERS (hidden until selected) -->
+    <div class="seg-header" id="sh-cos">
+      <h1>Cosméticos</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Farmácias de manipulação</span>
+        <span class="chip">Indústrias de higiene pessoal</span>
+        <span class="chip">Fabricantes de xampus e condicionadores</span>
+        <span class="chip">Fabricantes de maquiagem</span>
+        <span class="chip">Distribuidores de insumos cosméticos</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Pergunte quais produtos o cliente fabrica. Um fabricante de xampus vai precisar de Lauril Éter Sulfato Sódio, Coco Amido Propil Betaína, Glicerina e Nipagim ao mesmo tempo — você fecha uma cesta de produtos em uma visita só.</div>
+    </div>
+    <div class="seg-header" id="sh-ali">
+      <h1>Alimentos e Bebidas</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Indústrias de bebidas e refrigerantes</span>
+        <span class="chip">Laticínios e queijeiros</span>
+        <span class="chip">Padarias e confeitarias industriais</span>
+        <span class="chip">Produtores de doces e balas</span>
+        <span class="chip">Frigoríficos e processadoras de carne</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Conservantes (Sorbato de Potássio, Benzoato de Sódio, Nipagim) e espessantes (Goma Xantana, Goma Guar) são de compra recorrente. Foque em fechar pedidos periódicos, não pontuais.</div>
+    </div>
+    <div class="seg-header" id="sh-far">
+      <h1>Farmacêuticos e Veterinários</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Farmácias de manipulação</span>
+        <span class="chip">Laboratórios farmacêuticos</span>
+        <span class="chip">Distribuidoras de insumos farmacêuticos</span>
+        <span class="chip">Clínicas e pet shops veterinários</span>
+        <span class="chip">Fabricantes de suplementos</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Excipientes como Lactose, Estearato de Magnésio e Amido de Milho estão em praticamente todo comprimido fabricado. Farmácias de manipulação compram esses itens o tempo todo — é uma conta de recorrência garantida.</div>
+    </div>
+    <div class="seg-header" id="sh-dom">
+      <h1>Domissanitários</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Fabricantes de detergentes</span>
+        <span class="chip">Produtores de desinfetantes</span>
+        <span class="chip">Fabricantes de água sanitária</span>
+        <span class="chip">Empresas de limpeza hospitalar</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Quaternário de Amônia, Soda Líquida e Tripolifosfato de Sódio são os insumos mais consumidos. Pergunte sobre o volume de produção mensal para dimensionar o pedido correto.</div>
+    </div>
+    <div class="seg-header" id="sh-tex">
+      <h1>Têxtil e Corantes</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Tinturarias têxteis</span>
+        <span class="chip">Fabricantes de tecido e fibra</span>
+        <span class="chip">Indústrias gráficas</span>
+        <span class="chip">Fabricantes de papel</span>
+        <span class="chip">Produtores de couro</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> O tipo de corante depende da fibra que o cliente tinge. Algodão = Reativo, Poliéster = Disperso, Lã e Seda = Ácido. Saber isso antes da visita mostra que você entende o negócio do cliente.</div>
+    </div>
+    <div class="seg-header" id="sh-lit">
+      <h1>Sais de Lítio — Exclusividade Oregon Química</h1>
+      <p>Maior diferencial da Cadiquímica: nenhum concorrente direto tem essa linha.</p>
+      <div class="chips">
+        <span class="chip">Fabricantes de baterias</span>
+        <span class="chip">Indústrias cerâmicas e de vidro</span>
+        <span class="chip">Produtores de lubrificantes e graxas</span>
+        <span class="chip">Indústrias químicas</span>
+        <span class="chip">Farmacêuticas (Carbonato de Lítio)</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Ao abordar clientes que trabalham com baterias, cerâmica ou lubrificantes de alta performance, a exclusividade é o argumento de abertura. Ninguém mais tem esses produtos com representação exclusiva.</div>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <div id="prod-section" style="display:none;">
+      <div class="search-wrap">
+        <input type="text" id="psearch" placeholder="Buscar produto ou uso dentro deste segmento..." oninput="renderProds()">
+      </div>
+      <div class="prod-count-label" id="pcount"></div>
+      <div class="prod-grid" id="pgrid"></div>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeModalBg(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 id="mod-title"></h3>
+    <p id="mod-body"></p>
+  </div>
+</div>
+
+<script>
+const glossario = {
+  'emoliente': { t: 'Emoliente', d: 'Ingrediente que suaviza e amacia a pele, preenchendo os espaços entre as células da camada superficial. É o que faz a pele ficar macia ao toque depois de passar um creme. Exemplos: Óleo de Amêndoa, Lanolina, Manteiga de Karité.' },
+  'emulsificante': { t: 'Emulsificante', d: 'Ingrediente que permite misturar água e óleo, que normalmente não se misturam (como água e azeite numa salada). Sem emulsificante, um creme separaria em duas fases. Exemplos: Monoestearato de Glicerila, Tween, Renex.' },
+  'espessante': { t: 'Espessante', d: 'Ingrediente que aumenta a viscosidade — ou seja, deixa o produto mais grosso. É o que faz um xampú ser um líquido denso e não aguado como a água. Exemplos: Goma Xantana, Carbopol, Amido de Milho.' },
+  'conservante': { t: 'Conservante', d: 'Ingrediente que impede o crescimento de bactérias, fungos e bolores no produto, prolongando a validade e mantendo o produto seguro para uso. Exemplos: Nipagim, Sorbato de Potássio, Benzoato de Sódio.' },
+  'quelante': { t: 'Quelante', d: 'Ingrediente que "captura" e neutraliza metais pesados presentes no produto via água ou matérias-primas. Esses metais podem estragar a fórmula. O quelante evita isso. Exemplos: EDTA, Ácido Cítrico.' },
+  'umectante': { t: 'Umectante', d: 'Ingrediente que atrai água do ambiente e a retém na pele ou no produto, mantendo tudo hidratado por mais tempo. Exemplos: Glicerina, Propilenoglicol, Sorbitol.' },
+  'tensoativo': { t: 'Tensoativo', d: 'Ingrediente que reduz a tensão superficial da água, permitindo que ela se misture com gorduras e sujeiras para limpar. É o que cria espuma. Exemplos: Lauril Éter Sulfato Sódio, Coco Amido Propil Betaína.' },
+  'antioxidante': { t: 'Antioxidante', d: 'Ingrediente que protege o produto e a pele da oxidação — a reação com o oxigênio do ar que causa ranço em óleos, mudança de cor e perda de eficácia. Exemplos: B.H.T., Vitamina C, Beta Caroteno.' },
+  'excipiente': { t: 'Excipiente', d: 'Ingrediente inerte de um medicamento — não tem efeito terapêutico, mas é necessário para dar forma, volume, sabor e estabilidade ao remédio. Pense nele como a "massa" do comprimido. Exemplos: Lactose, Amido de Milho, Estearato de Magnésio.' },
+  'gelificante': { t: 'Gelificante', d: 'Ingrediente que transforma líquidos em géis. Forma uma rede molecular que sustenta a estrutura do gel. Exemplos: Carbopol, Goma Xantana, Agar Agar.' },
+  'queratolítico': { t: 'Queratolítico', d: 'Ingrediente que dissolve e elimina as células mortas da camada superficial da pele, promovendo renovação celular sem esfregar. É a esfoliação química. Exemplos: Ácido Salicílico, Ácido Lático.' },
+  'oclusivo': { t: 'Oclusivo', d: 'Ingrediente que cria uma camada física sobre a pele que impede a água de evaporar. Ideal para peles muito secas. Exemplos: Vaselina, Óleo Mineral, Lanolina.' },
+  'acidulante': { t: 'Acidulante', d: 'Ingrediente que adiciona sabor ácido a alimentos e bebidas, e também regula o pH do produto. Exemplos: Ácido Cítrico, Ácido Lático, Ácido Tartárico.' },
+  'antisséptico': { t: 'Antisséptico', d: 'Substância que elimina ou inibe microrganismos em tecidos vivos, como pele e feridas. Diferente do desinfetante, que age em superfícies. Exemplos: Álcool Etílico, Iodo Ressublimado, Triclosan.' },
+  'dispersante': { t: 'Dispersante', d: 'Ingrediente que mantém partículas sólidas distribuídas de forma uniforme num líquido, evitando que se depositem no fundo. Exemplos: Hexametafosfato de Sódio, Poliacrilato de Sódio.' },
+  'surfactante': { t: 'Surfactante', d: 'Mesmo que tensoativo. Molécula com dois lados: um que gosta de água e outro de gordura. Por causa disso, consegue misturar os dois e limpar removendo a gordura com água.' },
+  'ativo cosmético': { t: 'Ativo cosmético', d: 'Ingrediente que realmente produz um efeito na pele ou cabelo — hidrata, clareia, esfofia, reduz rugas, etc. Diferente dos ingredientes de base (espessantes, emulsificantes) que só dão textura ao produto.' },
+  'grau usp': { t: 'Grau USP', d: 'Significa que o produto segue o padrão de pureza da Farmacopeia dos Estados Unidos (United States Pharmacopeia). Indica altíssima pureza, adequado para uso farmacêutico e alimentar. É um diferencial de qualidade importante.' },
+  'ph': { t: 'pH', d: 'Escala de 0 a 14 que mede a acidez ou alcalinidade de um produto. pH 7 é neutro (água pura). Abaixo de 7 é ácido (suco de limão ≈ 2). Acima de 7 é alcalino (sabão ≈ 9). A pele saudável tem pH entre 4,5 e 5,5.' },
+  'lubrificante farmacêutico': { t: 'Lubrificante farmacêutico', d: 'Excipiente que impede que o pó grude nos punções durante a fabricação de comprimidos. Sem ele, os comprimidos racham ou grudam na máquina. O mais usado é o Estearato de Magnésio.' },
+};
+
+const produtos = [
+  // COSMÉTICOS
+  { n: 'Ácido Cítrico', s: ['cos','ali','far'], d: 'Um dos ingredientes mais versáteis do portfólio. Em alimentos é o sabor azedo de sucos, doces e refrigerantes. Em cosméticos age como quelante e regula o pH da fórmula para o nível ideal para a pele. Em limpeza remove ferrugem e calcário.', u: 'Indústrias alimentícias, fabricantes de cosméticos, limpeza industrial', ex: 'Se o cliente fabrica qualquer produto que precisa de pH controlado, ele provavelmente usa Ácido Cítrico.' },
+  { n: 'Ácido Esteárico', s: ['cos','far'], d: 'Ácido graxo sólido de aspecto de vela branca. É o ingrediente que dá consistência firme a cremes e sabonetes em barra como emoliente e emulsificante. Em comprimidos farmacêuticos serve de lubrificante farmacêutico para o pó não grudar nas máquinas.', u: 'Fabricantes de cremes, sabonetes em barra, loções e comprimidos', ex: 'Quando um creme tem textura firme e não escorrega, o ácido esteárico provavelmente está na fórmula.' },
+  { n: 'Ácido Lático', s: ['cos','ali','far'], d: 'Ácido produzido por fermentação natural. Na pele funciona como queratolítico suave — renova as células sem precisar esfregar. Em alimentos conserva iogurtes e azeitonas como acidulante. Em farmácia é usado em produtos vaginais por ter o pH natural do ambiente.', u: 'Cosméticos de renovação celular, indústria de laticínios, farmácia', ex: 'Produtos "antiidade" e de clareamento de pele frequentemente levam Ácido Lático como ativo principal.' },
+  { n: 'Ácido Salicílico', s: ['cos','far'], d: 'O principal ativo antiacne e anticaspa. Age como queratolítico penetrando no poro e dissolvendo as células mortas que o entopem. Também é usado para remover calosidades e verrugas, pois "descasca" a pele espessa camada por camada.', u: 'Produtos antiacne, xampus anticaspa, removedores de calo e verruga', ex: 'Todo produto que promete "poro limpo" ou "anticaspa" provavelmente tem Ácido Salicílico.' },
+  { n: 'Alantoína', s: ['cos','far'], d: 'Ativo cosmético que acelera a regeneração da pele e acalma irritações. Cicatriza mais rápido, reduz vermelhidão e hidrata. É muito seguro e suave, por isso é clássico em produtos para bebês, pós-barba e cremes cicatrizantes.', u: 'Produtos para bebês, cremes pós-barba, pomadas cicatrizantes, cosméticos para pele sensível', ex: 'Se o produto promete acalmar ou cicatrizar, a Alantoína quase certamente está na lista de ingredientes.' },
+  { n: 'Álcool Cetílico', s: ['cos','far'], d: 'Apesar do nome, não é o álcool que resseca a pele — é um álcool graxo, emoliente derivado de gordura vegetal, sólido à temperatura ambiente. Espessa cremes e dá textura aveludada a condicionadores capilares sem prejudicar a pele.', u: 'Cremes, loções, condicionadores capilares', ex: 'É um dos espessantes mais usados na indústria cosmética por ser seguro, econômico e de fácil uso.' },
+  { n: 'Álcool Cetoestearílico', s: ['cos','far'], d: 'Mistura de álcoois graxos que funciona como emoliente e espessante. Suaviza emulsões e é bem tolerado por peles sensíveis. Presente em cremes hidratantes, máscaras capilares e bases de maquiagem.', u: 'Cremes, loções, condicionadores, bases de maquiagem', ex: 'Cremes com textura cremosa e estável por meses devem parte disso ao álcool cetoestearílico.' },
+  { n: 'Álcool Etílico (Cereais)', s: ['cos','ali','far'], d: 'Etanol puro produzido a partir de cereais fermentados. Dissolve ingredientes como fragrâncias e ativos que não se dissolvem em água. Em higienizadores de mão, elimina bactérias e vírus como antisséptico. Em alimentos extrai aromas de especiarias e ervas.', u: 'Perfumes, higienizadores de mão, tinturas capilares, extratos alimentares', ex: 'O álcool gel e o álcool 70% são feitos basicamente de álcool etílico.' },
+  { n: 'Amido de Milho', s: ['cos','ali','far'], d: 'Pó branco e fino extraído do milho. Em alimentos funciona como espessante para molhos e sopas. Em talcos e pós cosméticos absorve a umidade da pele. Em comprimidos farmacêuticos serve como excipiente que dá volume sem interferir no remédio.', u: 'Indústrias alimentícias, fabricantes de talco e pós cosméticos, farmácias', ex: 'É um dos ingredientes mais baratos e versáteis — presente na cozinha, no banheiro e na farmácia ao mesmo tempo.' },
+  { n: 'Anfótero (Coco Amido)', s: ['cos','far'], d: 'Tensoativo anfótero derivado do óleo de coco. É o mais suave que existe — não irrita olhos nem pele. Por isso é o escolhido para xampus de bebê, produtos "sem lágrimas" e cosméticos para pele sensível.', u: 'Xampus para bebê, sabonetes suaves, produtos "sem lágrimas", cosméticos para pele sensível', ex: 'Todo produto que diz "sem lágrimas" no rótulo usa tensoativo anfótero como este.' },
+  { n: 'B.H.T.', s: ['cos','ali','far'], d: 'Antioxidante sintético que protege óleos e gorduras de ficarem rançosos. O ranço acontece quando a gordura reage com o oxigênio do ar — o B.H.T. bloqueia essa reação, prolongando a validade de salgadinhos, biscoitos e cosméticos com ingredientes gordurosos.', u: 'Salgadinhos, biscoitos, óleos vegetais processados, cosméticos', ex: 'Salgadinhos industriais que ficam meses na prateleira sem rançar usam antioxidantes como o B.H.T.' },
+  { n: 'Benzoato de Sódio', s: ['cos','ali','far'], d: 'Conservante muito usado em refrigerantes, sucos, molhos e cosméticos líquidos. Funciona melhor em produtos ácidos, por isso é sempre combinado com ácido cítrico ou lático. É barato, eficaz e amplamente aceito pelas legislações de alimentos no Brasil.', u: 'Refrigerantes, sucos, molhos, conservas, cosméticos líquidos', ex: 'A maioria dos refrigerantes industriais contém Benzoato de Sódio para não estragar após aberto.' },
+  { n: 'Cafeína', s: ['cos','ali','far'], d: 'Em cosméticos, a cafeína é um ativo cosmético que estimula a circulação sanguínea local quando aplicada na pele. Isso melhora a drenagem do líquido retido, reduzindo o aspecto de celulite e olheiras. Em alimentos e bebidas, é o estimulante natural de cafés e energéticos.', u: 'Cremes anticélulite, produtos para olheiras, energéticos, suplementos', ex: 'Cremes que prometem reduzir celulite quase sempre têm cafeína como ativo principal.' },
+  { n: 'Cânfora', s: ['cos','far'], d: 'Substância com cheiro forte e característico. Quando aplicada na pele, cria sensação de resfriamento e tem efeito analgésico leve como antisséptico. Em xaropes e pomadas para tosse, ajuda a descongestionar as vias respiratórias.', u: 'Bálsamos musculares, pomadas para tosse, repelentes, produtos para pé', ex: 'O cheiro característico do bálsamo que alivia dor muscular vem principalmente da cânfora.' },
+  { n: 'Carbopol', s: ['cos','far'], d: 'Polímero que transforma água pura em gel. É um gelificante poderoso — basta adicionar uma quantidade pequena e ajustar o pH para obter um gel transparente e estável. É o ingrediente principal do gel para cabelo e do gel hidroalcoólico.', u: 'Gel para cabelo, gel hidroalcoólico, géis cosméticos, géis farmacêuticos', ex: 'Sem Carbopol, o gel de cabelo seria simplesmente um líquido. É ele que cria a textura gelatinosa.' },
+  { n: 'Cera de Carnaúba', s: ['cos','ali','far'], d: 'Cera vegetal 100% brasileira, extraída das folhas de uma palmeira do Nordeste. É a cera natural mais dura e brilhante do mundo. Em cosméticos dá brilho e durabilidade aos batons. Em alimentos reveste balas e chocolates como emoliente protetor brilhante.', u: 'Batons, brilhos labiais, balas e chocolates (revestimento brilhante), ceras de polimento', ex: 'O brilho das balas M&Ms e de muitos chocolates vem da cera de carnaúba — produto genuinamente brasileiro com exportação mundial.' },
+  { n: 'Cloridróxido de Alumínio', s: ['cos','far'], d: 'O ativo antitranspirante mais eficaz que existe. Ele entra nos poros de suor e forma um tampão temporário, reduzindo a transpiração. Toda embalagem que diz "antitranspirante" tem esse ingrediente. Quanto maior a concentração, mais potente o produto.', u: 'Desodorantes antitranspirantes — roll-on, spray, creme e pó compacto', ex: 'Antitranspirante clínico tem concentração maior de Cloridróxido de Alumínio que o desodorante comum.' },
+  { n: 'Coco Amido Propil Betaína', s: ['cos','far'], d: 'Tensoativo anfótero suave e espumante derivado do coco. Compatível com pele e mucosas — não irrita. Reduz a irritação de outros tensoativos mais fortes quando combinados. Essencial em produtos "baby" e para pele sensível.', u: 'Xampus, sabonetes líquidos, géis de banho, produtos para bebês', ex: 'Produtos "para pele sensível" e "para bebês" têm este ingrediente como base de limpeza.' },
+  { n: 'D-Pantenol', s: ['cos','far'], d: 'A pró-vitamina B5. Quando aplicada no cabelo ou pele, penetra e se converte em vitamina B5 ativa, que age como umectante profundo e repara o tecido danificado. É o ingrediente que faz o cabelo ficar macio e brilhante depois do condicionador.', u: 'Xampus, condicionadores, cremes hidratantes, produtos pós-sol', ex: 'A frase "com Pantenol" que aparece em embalagens de xampus é um argumento de venda — e o D-Pantenol é o ingrediente que entrega esse benefício.' },
+  { n: 'EDTA (Dissódico/Tetrassódico)', s: ['cos','ali','far'], d: 'Quelante que captura e neutraliza metais pesados que entram no produto via água ou matérias-primas. Esses metais podem fazer o produto mudar de cor, criar ranço ou perder eficácia. O EDTA é o "seguro de qualidade" invisível da fórmula.', u: 'Cosméticos, alimentos processados, medicamentos — praticamente qualquer produto de longa validade', ex: 'Um creme que mantém cor, cheiro e textura por dois anos de validade deve parte disso ao EDTA.' },
+  { n: 'Glicerina Bidestilada', s: ['cos','ali','far'], d: 'O umectante universal — o ingrediente de hidratação mais usado no mundo. Atrai água do ambiente e a retém na pele ou no produto. Em sabonetes evita o ressecamento. Em alimentos mantém bolos e geleias macias por mais tempo.', u: 'Cremes, sabonetes, xampus, dentifrícios, xaropes, alimentos processados', ex: 'Praticamente todo produto que toca a pele tem glicerina — leia qualquer rótulo de hidratante.' },
+  { n: 'Goma Xantana', s: ['cos','ali','far'], d: 'Espessante e estabilizante natural produzido por fermentação. Em alimentos mantém molhos homogêneos e sorvetes cremosos. Em cosméticos dá consistência a géis e cremes como gelificante. Estável em ampla faixa de temperatura.', u: 'Molhos, sorvetes, produtos sem glúten, cosméticos, medicamentos', ex: 'Produtos sem glúten precisam de Goma Xantana para ter a textura que normalmente o glúten daria.' },
+  { n: 'Hidroxietil Celulose', s: ['cos'], d: 'Espessante e gelificante derivado da celulose vegetal. Cria géis aquosos transparentes e de textura leve. É o ingrediente que faz géis capilares ficarem claros e brilhosos.', u: 'Géis capilares transparentes, cremes, produtos de barbear, géis pós-sol', ex: 'Géis capilares transparentes e produtos de barbear em gel usam Hidroxietil Celulose como base.' },
+  { n: 'Lanolina', s: ['cos','far'], d: 'Cera extraída da lã da ovelha — a gordura que protege o pelo animal da chuva e do frio. Na pele humana faz o mesmo: funciona como oclusivo formando uma barreira protetora que impede a perda de água. Ideal para peles muito ressecadas e rachaduras.', u: 'Cremes para rachaduras de calcanhar, produtos labiais, pomadas, produtos para amamentação', ex: 'Cremes para rachadura de calcanhar e pomadas para mamilo (usadas durante amamentação) frequentemente contêm lanolina.' },
+  { n: 'Lauril Éter Sulfato Sódio', s: ['cos','far'], d: 'O tensoativo mais usado no mundo em produtos de higiene pessoal. Responsável pela espuma do xampú, sabonete líquido e gel de banho. Limpa bem, espuma muito e é relativamente barato — por isso está em praticamente todo produto de limpeza pessoal.', u: 'Xampus, sabonetes líquidos, géis de banho, detergentes', ex: 'Leia o rótulo do seu xampú — Lauril Éter Sulfato Sódio (SLES) é provavelmente um dos primeiros ingredientes.' },
+  { n: 'Manteiga de Karité', s: ['cos','far'], d: 'Gordura extraída das nozes do Karité, árvore africana. Rica em ácidos graxos e vitaminas naturais. É um emoliente profundo muito eficaz — hidrata, repara a barreira da pele e protege do ressecamento.', u: 'Cremes corporais ricos, máscaras capilares, produtos para cabelos cacheados, protetores labiais', ex: 'Produtos premium para cabelos cacheados e peles muito secas destacam o Karité como ingrediente nobre no rótulo.' },
+  { n: 'Manteiga de Cacau', s: ['cos','ali','far'], d: 'Gordura extraída das sementes do cacau — a mesma que está no chocolate. Em cosméticos é um emoliente que derrete na temperatura da pele, absorve rápido e hidrata. Em farmácia é base para supositórios. Em alimentos é o chocolate.', u: 'Chocolates, cremes corporais, batons, supositórios', ex: 'O derretimento característico do chocolate na boca é uma propriedade da manteiga de cacau.' },
+  { n: 'Mentol', s: ['cos','ali','far'], d: 'Cristal extraído da menta que ativa os receptores de frio da pele e da boca — cria sensação de fresco sem mudar a temperatura de verdade. Em balas e gomas refresca. Em cremes musculares anestesia levemente. Em xampus anticaspa combate o fungo causador da caspa.', u: 'Balas, gomas de mascar, xampus anticaspa, cremes musculares, produtos bucais', ex: 'A sensação de frescor do Halls, da pasta de dente e do creme para dor muscular vem toda do mentol.' },
+  { n: 'Miristato de Isopropila', s: ['cos','far'], d: 'Emoliente líquido que confere textura sedosa e não gordurosa a cremes e loções — faz o produto se espalhar fácil na pele e ser absorvido rapidamente. Também funciona como veículo, carregando ativos cosméticos para dentro da pele.', u: 'Protetores solares, cremes faciais, bases de maquiagem, produtos pós-barba', ex: 'Quando o protetor solar passa fácil e não fica sensação pesada, o Miristato de Isopropila provavelmente está na fórmula.' },
+  { n: 'Monoestearato de Glicerila', s: ['cos','ali','far'], d: 'Emulsificante que une água e gordura e mantém a mistura estável. Em cosméticos é o que faz o creme não separar em duas fases. Em alimentos estabiliza sorvetes (evita cristais de gelo) e ajuda na textura de panificação.', u: 'Cremes, loções, sorvetes, pães, margarinas, biscoitos', ex: 'Um creme homogêneo por meses sem separar deve esse feito ao emulsificante.' },
+  { n: 'Nipagim (Nipagin)', s: ['cos','ali','far'], d: 'Nome comercial do metilparabeno — um dos conservantes mais usados e estudados do mundo. Impede o crescimento de fungos e bactérias em cosméticos aquosos, medicamentos e alimentos. Funciona em baixas concentrações, sendo econômico para o fabricante.', u: 'Cosméticos líquidos, medicamentos, doces, geleias, produtos de higiene em geral', ex: 'Quando um produto diz "livre de parabenos" no rótulo, está especificamente excluindo o Nipagim e similares.' },
+  { n: 'Nipazol', s: ['cos','ali','far'], d: 'Nome comercial do propilparabeno. Funciona de forma parecida com o Nipagim, mas é mais eficaz contra bolores e leveduras. Na prática os dois são sempre usados juntos para cobrir todo o espectro de conservação.', u: 'Cosméticos, alimentos, medicamentos — sempre combinado com Nipagim para cobertura total', ex: 'A dupla Nipagim + Nipazol é o sistema de conservação mais clássico e econômico da indústria cosmética.' },
+  { n: 'Óleo de Amêndoa', s: ['cos','ali','far'], d: 'Óleo leve e suave extraído das amêndoas. Rico em vitamina E e ácidos graxos. É um emoliente muito gentil, adequado para peles sensíveis e bebês. Absorve bem sem deixar sensação gordurosa.', u: 'Óleos de massagem, cremes para pele sensível, produtos para bebês, séruns faciais', ex: 'Óleos corporais de alta qualidade para bebês frequentemente usam Óleo de Amêndoa como base.' },
+  { n: 'Óleo de Babaçu', s: ['cos','ali','far'], d: 'Óleo vegetal brasileiro extraído de uma palmeira típica do Nordeste. Rico em ácido láurico, com propriedades similares ao óleo de coco mas textura mais leve. É excelente emoliente para cabelos ressecados e pele.', u: 'Cosméticos capilares, cremes hidratantes, como substituto do óleo de coco', ex: 'Produtos que usam "óleos brasileiros" como argumento de venda podem ter Óleo de Babaçu na fórmula.' },
+  { n: 'Óleo Mineral USP', s: ['cos','ali','far'], d: 'Óleo derivado do petróleo com grau USP (alta pureza). Cria uma camada oclusiva sobre a pele que retém a umidade por ser oclusivo. Em bebês é o clássico baby oil. Em farmácia é usado como laxante oral. Em cosméticos é base de pomadas e cremes.', u: 'Baby oil, pomadas, laxante oral, emoliente em cremes e pomadas', ex: 'O óleo de bebê clássico é essencialmente óleo mineral com fragrância adicionada.' },
+  { n: 'Óleo de Menta', s: ['cos','ali','far'], d: 'Óleo essencial extraído da planta menta, rico em mentol. Tem propriedades refrescantes e aromatizantes. Em alimentos aromatiza balas e gomas. Em cosméticos é usado em xampus anticaspa e cremes musculares.', u: 'Balas, gomas, xampus, cremes musculares, aromaterapia', ex: 'O aroma fresco e mentolado de muitos produtos vem do óleo de menta.' },
+  { n: 'Óleo de Semente de Uva', s: ['cos','ali','far'], d: 'Óleo leve extraído das sementes da uva, rico em ácido linoleico e vitamina E como antioxidante. É um emoliente muito bem tolerado por todos os tipos de pele, inclusive oleosas. Absorção rápida e sem sensação gordurosa.', u: 'Séruns faciais, óleos corporais, culinária de alta gastronomia', ex: 'Séruns para pele oleosa frequentemente usam Óleo de Semente de Uva por ser leve e não entupir poros.' },
+  { n: 'Óxido de Zinco', s: ['cos','far'], d: 'Ativo cosmético multitarefa: bloqueia raios UV (protetor solar físico), mata bactérias como antisséptico, reduz vermelhidão e seca a pele irritada. Por isso aparece em protetores solares físicos, pomadas para assadura de bebê e produtos antiacne.', u: 'Protetores solares físicos, pomadas para assadura, produtos antiacne, curativos', ex: 'O protetor solar "de bebê" branco e opaco contém Óxido de Zinco como filtro solar — é seguro e eficaz.' },
+  { n: 'P.V.P.', s: ['cos','far'], d: 'Polivinilpirrolidona. Em cosméticos é o fixador de cabelo — cria um filme invisível no fio que mantém o estilo. Em farmácia é excipiente como ligante em comprimidos, solubilizante de ativos difíceis de dissolver.', u: 'Géis e sprays fixadores de cabelo, comprimidos, medicamentos injetáveis', ex: 'O efeito de "segurar o penteado" dos sprays de cabelo vem do P.V.P.' },
+  { n: 'Parafina', s: ['cos','ali','far'], d: 'Cera mineral derivada do petróleo. Em cosméticos é a base de velas, pomadas e cremes. Em farmácia é base de supositórios. Em alimentos é usada para dar brilho como oclusivo protetor na superfície de frutas e queijos.', u: 'Velas, pomadas, supositórios, revestimento de frutas e queijos', ex: 'Maçãs com brilho excessivo no supermercado frequentemente têm revestimento de parafina alimentar.' },
+  { n: 'Peróxido de Hidrogênio', s: ['cos','far'], d: 'A famosa água oxigenada. Oxida e descolore — por isso clareia o cabelo e os dentes. Mata bactérias, sendo usado como antisséptico em feridas. Em produtos de limpeza funciona como alvejante poderoso.', u: 'Descoloração capilar, clareamento dental, antisséptico, alvejante de roupas', ex: 'Todo produto de descoloração capilar usa Peróxido de Hidrogênio como agente oxidante.' },
+  { n: 'Propilenoglicol USP', s: ['cos','ali','far'], d: 'Líquido viscoso e inodoro com múltiplas funções: umectante, solvente, conservante suave e veículo de ativos cosméticos. Dissolve ingredientes que não se dissolvem nem em água nem em óleo. Com grau USP, é adequado para medicamentos e alimentos.', u: 'Cosméticos, medicamentos, alimentos processados, sabores industriais', ex: 'Se um produto tem longa validade e boa textura macia, o Propilenoglicol provavelmente está na fórmula.' },
+  { n: 'Quaternário de Amônia', s: ['cos','far','dom'], d: 'Em cabelos: condicionante que neutraliza a eletricidade estática e torna o fio macio e fácil de pentear — é o que faz o condicionador desembaraçar. Em limpeza: poderoso antisséptico de superfícies usado em hospitais e cozinhas industriais.', u: 'Condicionadores capilares, desinfetantes hospitalares e industriais', ex: 'O efeito de desembaraçar do condicionador vem do Quaternário de Amônia, que se atrai com o fio de cabelo.' },
+  { n: 'Silicone', s: ['cos','far'], d: 'Polímero de silício que cria um filme protetor e sedoso sobre pele e cabelo como emoliente. No cabelo diminui o frizz, protege do calor do secador e dá brilho. Na pele deixa textura suave e sedosa em cremes e protetores.', u: 'Condicionadores, cremes pós-calor, protetores térmicos, cremes hidratantes', ex: 'O cabelo liso e brilhante após usar um condicionador de qualidade vem em grande parte do silicone.' },
+  { n: 'Sorbitol', s: ['cos','ali','far'], d: 'Poliol (álcool de açúcar) que hidrata como umectante e tem sabor levemente adocicado com menos calorias que o açúcar. Em cosméticos umectante eficiente em dentifrícios e cremes. Em alimentos adoçante em produtos sem açúcar. Em farmácia laxante suave.', u: 'Dentifrícios, cremes, balas e chicletes sem açúcar, xaropes, laxantes', ex: 'Chicletes sem açúcar usam Sorbitol — por isso a embalagem avisa que o excesso pode ter efeito laxante.' },
+  { n: 'Tween (Polissorbato)', s: ['cos','ali','far'], d: 'Emulsificante não iônico muito seguro, aprovado até para medicamentos injetáveis. Principal função: dissolver óleo essencial ou vitamina em água (solubilizar). Sem ele, o óleo ficaria separado boiando no produto aquoso.', u: 'Cosméticos aquosos com óleos essenciais, alimentos, medicamentos', ex: 'Quando um produto aquoso diz "com vitamina E" e continua uniforme, o Tween provavelmente foi usado.' },
+  { n: 'Vaselina Líquida USP', s: ['cos','ali','far'], d: 'Petrolatum líquido, grau USP. Emoliente oclusivo que cria barreira na pele e impede perda de água. Em farmácia é usado como laxante oral. Em cosméticos é base de pomadas e óleos de bebê.', u: 'Baby oil, pomadas, laxante oral, emoliente em cosméticos', ex: 'O óleo de bebê clássico é essencialmente óleo mineral com fragrância — Vaselina Líquida USP.' },
+  { n: 'Vaselina Sólida', s: ['cos','far'], d: 'Petrolatum sólido. Cria barreira oclusiva protetora sobre a pele, impede perda de água e protege de irritantes externos. Usada em pomadas, cremes para lábios rachados, produtos para assadura e como base farmacêutica.', u: 'Pomadas, produtos para lábios rachados, cremes para assadura', ex: 'O "balsamo labial" e o produto para assadura de bebê são basicamente vaselina sólida com ativos.' },
+  { n: 'Vitamina C', s: ['cos','ali','far'], d: 'O Ácido Ascórbico é um dos ingredientes mais versáteis. Em cosméticos é antioxidante potente e inibe a produção de melanina (clareia manchas). Em alimentos conserva e é nutriente essencial. Em farmácia é suplemento para imunidade.', u: 'Séruns clareadores de pele, alimentos processados, suplementos vitamínicos', ex: 'O sérum de Vitamina C faz sucesso por resultados visíveis: clareia manchas, uniformiza o tom e dá brilho.' },
+  // ALIMENTOS
+  { n: 'Acessulfame K', s: ['ali'], d: 'Adoçante artificial sem calorias, 200 vezes mais doce que o açúcar. Resiste ao calor sem perder o sabor — pode ser usado em alimentos que vão ao forno. Quase sempre combinado com Aspartame como acidulante complementar para melhor sabor final.', u: 'Refrigerantes diet, alimentos diet assados, adoçantes de mesa, produtos para diabéticos', ex: 'Refrigerantes diet de grandes marcas geralmente combinam Acessulfame K com Aspartame.' },
+  { n: 'Ácido Fosfórico', s: ['ali','far'], d: 'Acidulante e agente quelante industrial. É o principal acidulante dos refrigerantes de cola — dá o sabor característico. Em uso industrial limpa ferrugem de metais. Em farmácia ajusta pH de soluções como regulador.', u: 'Refrigerantes de cola, tratamento de superfícies metálicas, farmácia', ex: 'O sabor único da Coca-Cola e similares vem em parte do ácido fosfórico.' },
+  { n: 'Ácido Fumárico', s: ['ali'], d: 'Acidulante sólido com sabor azedo forte e muito duradouro. Diferente do ácido cítrico, não absorve umidade do ar — por isso é preferido em pós para bebidas e misturas secas que precisam manter fluidez.', u: 'Gelatinas, balas azedas, pós para bebidas, refrescos em pó', ex: 'A acidez forte de certas balas azedas vem frequentemente do ácido fumárico.' },
+  { n: 'Ácido Málico', s: ['ali'], d: 'O ácido natural da maçã. Dá sabor azedo suave e prolongado como acidulante, sem o gosto residual de outros. Preferido quando se quer acidez elegante que lembre fruta fresca.', u: 'Balas, gomas, sucos, alimentos sem açúcar com sabor de fruta', ex: 'Produtos com sabor de "maçã ácida" usam ácido málico por ser o ácido natural dessa fruta.' },
+  { n: 'Ácido Sórbico', s: ['ali'], d: 'Conservante natural eficaz contra fungos e leveduras. É o precursor do Sorbato de Potássio e Cálcio. Usado em queijos, pães, sucos e vinhos para prolongar a validade sem alterar o sabor.', u: 'Queijos, pães, sucos, vinhos', ex: 'Queijos moles e iogurtes que duram semanas frequentemente usam Ácido Sórbico ou seus sais como conservantes.' },
+  { n: 'Ácido Tartárico', s: ['cos','ali'], d: 'Ácido natural encontrado principalmente na uva — subproduto da produção de vinho. Funciona como acidulante em balas, gelatinas e refrigerantes. Em cosméticos faz ajuste de pH.', u: 'Balas, gelatinas, refrigerantes, vinhos, cosméticos', ex: 'O sabor azedo característico de algumas balas de goma vem do ácido tartárico.' },
+  { n: 'Agar Agar', s: ['ali'], d: 'Gelificante natural extraído de algas marinhas. Forma géis mais firmes que a gelatina animal e não precisa de refrigeração para gelar. É 100% vegetal — favorito de veganos e vegetarianos como substituto da gelatina.', u: 'Sobremesas, geleias, culinária vegana e vegetariana, microbiologia de laboratório', ex: 'Em restaurantes japoneses é base de sobremesas. Também é o meio de cultura de laboratório mais usado no mundo.' },
+  { n: 'Aspartame', s: ['ali','far'], d: 'Adoçante artificial 200 vezes mais doce que o açúcar sem calorias. Tem sabor mais próximo do açúcar que outros adoçantes. Atenção: não pode ser consumido por portadores de fenilcetonúria (PKU).', u: 'Refrigerantes diet, iogurtes, gomas de mascar, medicamentos pediátricos', ex: 'O rótulo de alimentos com Aspartame é obrigado por lei a informar "contém fenilalanina" — um detalhe que o representante deve conhecer.' },
+  { n: 'B.H.A.', s: ['ali','far'], d: 'Butil-hidroxianisol — antioxidante sintético eficaz em gorduras animais e óleos vegetais. Previne o ranço e prolonga a validade. Frequentemente usado junto com o B.H.T. para cobertura mais ampla.', u: 'Alimentos gordurosos, óleos vegetais, embutidos, preparações farmacêuticas', ex: 'Produtos fritos industriais que duram meses sem rançar usam B.H.A. e/ou B.H.T.' },
+  { n: 'Beta Caroteno', s: ['ali','cos'], d: 'Pigmento natural laranja que dá cor a cenouras e abóboras. No organismo é convertido em vitamina A como antioxidante. Como corante alimentar é natural e seguro. Em cosméticos dá tom dourado a bronzeadores.', u: 'Sucos, margarinas, iogurtes (corante natural), bronzeadores, suplementos de vitamina A', ex: 'Margarinas com cor amarela intensa usam Beta Caroteno como corante — natural e funcional ao mesmo tempo.' },
+  { n: 'Carboximetilcelulose', s: ['ali','far'], d: 'Espessante e estabilizante derivado da celulose vegetal. Não é digerível — por isso não tem calorias e funciona como fibra dietética. Em sorvetes impede a formação de cristais de gelo. Em comprimidos serve como excipiente ligante.', u: 'Sorvetes, molhos, alimentos diet, comprimidos', ex: 'Sorvetes mais cremosos sem cristais de gelo usam espessantes como Carboximetilcelulose.' },
+  { n: 'Caseína', s: ['ali','far'], d: 'Proteína principal do leite. Em alimentos é usada como emulsificante, espessante e enriquecedor proteico. Em farmácia e cosméticos forma filmes protetores. É a proteína de maior valor nutricional do leite — absorção lenta.', u: 'Laticínios, suplementos proteicos, cosméticos, farmácia', ex: 'Suplementos de proteína de caseína são muito usados por atletas por serem de absorção lenta e prolongada.' },
+  { n: 'Caseinato de Sódio', s: ['ali','far'], d: 'Derivado solúvel da Caseína. Excelente emulsificante — cria a espuma cremosa dos cafés solúveis (creamer). Também é fonte de proteína em suplementos e sopas industriais.', u: 'Cafés cremosos (creamer), sopas industriais, suplementos proteicos, laticínios', ex: 'O pó branco do "café cremoso" que dissolve fazendo espuma é basicamente Caseinato de Sódio.' },
+  { n: 'Ciclamato de Sódio', s: ['ali'], d: 'Adoçante artificial 30 a 50 vezes mais doce que o açúcar. Sozinho pode ter leve gosto amargo, mas combinado com Sacarina os sabores se equilibram e o resultado é muito melhor — por isso os dois quase sempre andam juntos.', u: 'Adoçantes de mesa em sachê, refrigerantes diet, produtos para diabéticos', ex: 'A maioria dos adoçantes de sachê vendidos no Brasil usa a combinação Ciclamato + Sacarina.' },
+  { n: 'Dextrose', s: ['ali','far'], d: 'Glicose pura em pó. É o açúcar de absorção mais rápida — vai direto para o sangue. Em alimentos adoça com sabor suave. Em farmácia é a base de soros intravenosos hospitalares e bebidas de reposição energética rápida.', u: 'Soros hospitalares, bebidas esportivas, panificação, xaropes', ex: 'O soro que se toma quando está desidratado é basicamente dextrose e sal dissolvidos em água.' },
+  { n: 'EDTA Dissódico', s: ['ali'], d: 'Quelante que neutraliza metais pesados em alimentos, evitando o escurecimento oxidativo e o ranço. Mantém a cor e o sabor originais em conservas, maioneses, molhos e margarinas.', u: 'Conservas, maioneses, molhos prontos, margarina', ex: 'Maionese que mantém cor clara por meses na geladeira usa EDTA para evitar oxidação.' },
+  { n: 'Etilvanilina', s: ['ali'], d: 'Aromatizante sintético com sabor de baunilha três vezes mais intenso que a vanilina convencional. Usado quando se quer sabor de baunilha marcante em menor quantidade — econômico para o fabricante.', u: 'Chocolates, sorvetes, biscoitos, produtos de confeitaria', ex: 'Quando o produto diz "sabor baunilha intenso", provavelmente tem Etilvanilina na fórmula.' },
+  { n: 'Fosfato Trissódico', s: ['ali','dom'], d: 'Alcalinizante e agente de limpeza industrial. Em alimentos funciona como emulsificante e regulador de pH. Em domissanitários remove gordura pesada e incrustações de superfícies industriais.', u: 'Emulsificação em alimentos, detergentes industriais pesados', ex: 'Cozinhas industriais usam Fosfato Trissódico para limpeza pesada de equipamentos com gordura acumulada.' },
+  { n: 'Frutose', s: ['ali'], d: 'O açúcar das frutas. É mais doce que o açúcar comum — pode usar menos para o mesmo dulçor. É absorvido mais lentamente pelo organismo, sendo preferido em alguns produtos para diabéticos e atletas.', u: 'Produtos diet, bebidas esportivas, confeitaria, alimentos para diabéticos', ex: 'Produtos que dizem "adoçado naturalmente com frutose" buscam o apelo de ingrediente natural.' },
+  { n: 'Goma Arábica', s: ['ali','far'], d: 'Resina natural produzida por acácias. Excelente para encapsular aromas em pó — cria uma capa protetora ao redor de gotas de aroma. Também estabiliza emulsões como espessante. Base de algumas balas mastigáveis.', u: 'Aromas em pó encapsulados, balas mastigáveis, refrigerantes, excipiente farmacêutico', ex: 'Balas mastigáveis e moles devem sua textura em parte à Goma Arábica.' },
+  { n: 'Goma Guar', s: ['ali','far'], d: 'Espessante natural extraído de leguminosa. É oito vezes mais eficaz que o amido de milho — precisa de muito menos quantidade. Em sorvetes impede cristais de gelo. Em produtos sem glúten dá parte da textura que o glúten normalmente daria.', u: 'Sorvetes, molhos, produtos sem glúten, laxante suave em farmácia', ex: 'Na lista de ingredientes de sorvetes e molhos industriais, Goma Guar aparece frequentemente.' },
+  { n: 'Hexametafosfato de Sódio', s: ['ger','ali'], d: 'Sequestra e neutraliza os metais que estão dissolvidos na água e nos alimentos como dispersante e conservante. Em alimentos como frutos do mar e carnes processadas, retém umidade mantendo o produto mais suculento.', u: 'Frigoríficos, indústrias de alimentos processados, tratamento de água industrial', ex: 'Frutos do mar que chegam ao cliente com aparência fresca e úmida frequentemente passaram por tratamento com hexametafosfato.' },
+  { n: 'Malto Dextrina', s: ['ali'], d: 'Carboidrato em pó de digestão moderada derivado do amido. Em suplementos esportivos é fonte de energia de rápida absorção. Em alimentos é usada para encapsular aromas e gorduras, transformando líquidos em pó.', u: 'Suplementos esportivos, alimentos infantis, encapsulamento de aromas, alimentos diet', ex: 'A maltodextrina é a base de muitos suplementos pré-treino em pó.' },
+  { n: 'Metabissulfito de Potássio', s: ['ali'], d: 'Conservante e antioxidante que libera dióxido de enxofre, um potente preservante. Evita escurecimento e fermentação indesejada em vinhos, cervejas e sucos. É o "sulfito" que aparece nos rótulos de vinho.', u: 'Vinhos, cervejas, sucos, frutas desidratadas', ex: 'A obrigação de declarar "contém sulfitos" nos rótulos de vinho existe por causa do Metabissulfito de Potássio.' },
+  { n: 'Metabissulfito de Sódio', s: ['ali'], d: 'Conservante similar ao de potássio — igualmente eficaz e mais barato. Branqueia frutas e vegetais desidratados, conserva camarões e protege vinhos. Também é usado no tratamento de água para remover cloro.', u: 'Frutas secas, camarões, vinhos, tratamento de água', ex: 'O camarão seco que mantém cor uniforme sem escurecer passou por tratamento com metabissulfito.' },
+  { n: 'Propionato de Cálcio', s: ['ali'], d: 'Conservante antifúngico específico para panificação. Impede o crescimento de mofo em pães, bolos e produtos de confeitaria, estendendo a vida útil sem afetar o sabor.', u: 'Pães de forma, bolos industriais, produtos de padaria embalados', ex: 'Pão de forma que dura dias na prateleira sem mofar usa Propionato de Cálcio como conservante.' },
+  { n: 'Sacarina', s: ['ali','far'], d: 'Adoçante artificial descoberto no século XIX. É 300 vezes mais doce que o açúcar, sem calorias e estável ao calor. O leve gosto metálico em altas concentrações é equilibrado combinando com Ciclamato como acidulante complementar.', u: 'Adoçantes de mesa, refrigerantes diet, xaropes pediátricos, produtos para diabéticos', ex: 'O adoçante de sachê do café quase sempre mistura Sacarina com Ciclamato de Sódio.' },
+  { n: 'Sorbato de Potássio', s: ['cos','ali','far'], d: 'Conservante natural derivado do ácido sórbico. Eficaz contra fungos, bolores e leveduras. Muito usado em queijos, vinhos, sucos e pães. Em cosméticos prolonga a validade. Considerado o conservante mais seguro da indústria alimentar.', u: 'Queijos, vinhos, sucos, pães, iogurtes, cosméticos', ex: 'Queijos em fatias embalados que duram semanas na geladeira usam Sorbato de Potássio para não mofar.' },
+  { n: 'Sorbitol 70%', s: ['ali','far'], d: 'Solução aquosa de Sorbitol a 70%, pronta para usar. Umectante que evita ressecamento de balas, pães e gomas. Em farmácia é base de xaropes e pastas de dente. Também funciona como conservante suave.', u: 'Balas, gomas de mascar, pães industriais, xaropes, pastas de dente', ex: 'Gomas de mascar "sem açúcar" usam Sorbitol 70% como umectante e substituto do açúcar.' },
+  { n: 'TBHQ', s: ['ali'], d: 'Ter-butil-hidroquinona — antioxidante sintético muito eficaz em óleos vegetais e gorduras animais. Um dos mais eficientes para proteger frituras industriais e alimentos com alto teor de gordura da rancidez.', u: 'Óleos vegetais refinados, frituras industriais, salgadinhos, frango frito industrial', ex: 'O frango frito de redes de fast food que mantém sabor consistente usa TBHQ nos óleos de fritura.' },
+  { n: 'Tetrapirofosfato de Sódio', s: ['ali'], d: 'Sequestrante como quelante e emulsificante. Usado em frutos do mar (evita manchas pretas), carnes processadas e como agente dispersante industrial para manter qualidade e aparência.', u: 'Frutos do mar processados, carnes processadas, dispersante industrial', ex: 'Frutos do mar processados que mantêm aparência uniforme usam Tetrapirofosfato de Sódio.' },
+  { n: 'Tintura de Cochonilha', s: ['ali','far'], d: 'Corante natural vermelho-carmim extraído do inseto cochonilha. Usado para colorir alimentos com cor vermelha ou rosa natural — iogurtes, balas, embutidos e cosméticos.', u: 'Iogurtes, balas, embutidos, cosméticos', ex: 'Iogurtes de morango com cor muito viva frequentemente usam corante de cochonilha como corante natural.' },
+  { n: 'Tripolifosfato de Sódio', s: ['ger','ali','dom'], d: 'Produto com dupla função: na limpeza "amolece" a água dura para o detergente funcionar melhor como dispersante; nos alimentos retém umidade em carnes processadas para que não ressequem.', u: 'Detergentes em pó, sabões industriais, frigoríficos, cerâmica', ex: 'Um fabricante de detergente e um frigorífico podem comprar o mesmo produto para usos completamente diferentes.' },
+  { n: 'Vanilina', s: ['ali'], d: 'O principal composto do aroma de baunilha, produzido sinteticamente. Mais estável e muito mais barato que o extrato natural de baunilha. Dá o "gosto de baunilha" em chocolates, sorvetes e biscoitos. Em perfumaria dá fundo quente.', u: 'Chocolates, sorvetes, biscoitos, bolos, perfumes, medicamentos com sabor', ex: 'Quando o produto diz "sabor de baunilha" (e não extrato), a Vanilina sintética é o ingrediente.' },
+  // FARMACÊUTICOS
+  { n: 'Acetato de Amila', s: ['far'], d: 'Solvente orgânico com aroma característico de banana/pera. Usado em laboratório farmacêutico para dissolver e extrair componentes, na fabricação de vernizes e na síntese de aromas artificiais.', u: 'Laboratórios farmacêuticos, fabricantes de vernizes e aromas', ex: 'O aroma artificial de banana em balas e sorvetes é produzido a partir do acetato de amila.' },
+  { n: 'Ácido Benzóico', s: ['far','ali'], d: 'Conservante antimicrobiano e antifúngico. Usado em medicamentos tópicos antifúngicos e em alimentos como conservante. Forma o Benzoato de Sódio quando neutralizado com soda, o conservante mais usado em bebidas.', u: 'Medicamentos antifúngicos tópicos, alimentos e bebidas como conservante', ex: 'Pomadas antifúngicas clássicas têm Ácido Benzóico como ativo.' },
+  { n: 'Álcool Benzílico', s: ['cos','far'], d: 'Solvente e conservante com leve ação bacteriostática. Usado em medicamentos injetáveis farmacêuticos como solvente de fármacos, em tinturas capilares e como fixador de fragrâncias em perfumes.', u: 'Medicamentos injetáveis, tinturas capilares, perfumes', ex: 'Vários medicamentos injetáveis usam Álcool Benzílico como solvente por ser seguro para uso parenteral.' },
+  { n: 'Álcool Isopropílico', s: ['far','dom'], d: 'Álcool que evapora rapidamente e não deixa resíduo. Mata bactérias e vírus com eficiência como antisséptico. Amplamente usado em lenços antissépticos, limpeza de telas e circuitos eletrônicos, e como solvente em laboratório.', u: 'Lenços antissépticos, limpeza de eletrônicos, antissépticos, solvente industrial', ex: 'O álcool dos lenços de limpar tela de celular é Isopropílico — evapora sem deixar mancha.' },
+  { n: 'Benzoato de Benzila', s: ['far'], d: 'Antiparasitário tópico usado no tratamento de sarna (escabiose) e piolho (pediculose). Aplicado na pele mata os ácaros e insetos parasitas. Também repele ácaros em colchões e roupas de cama.', u: 'Tratamento de sarna, piolho, repelente de ácaros', ex: 'Produto com demanda constante em farmácias de manipulação, especialmente em regiões com maior incidência de parasitas.' },
+  { n: 'Dipirona Sódica', s: ['far'], d: 'O analgésico e antitérmico mais usado no Brasil. Alivia dores e febres. É muito mais comum aqui que em outros países (restrito ou proibido em alguns). A demanda é enorme e constante — comprimidos, gotas, xaropes e injetável.', u: 'Farmácias de manipulação, laboratórios farmacêuticos, hospitais', ex: 'Dipirona é um dos medicamentos mais vendidos no Brasil há décadas — venda garantida para qualquer farmácia de manipulação.' },
+  { n: 'Estearato de Magnésio', s: ['far'], d: 'O lubrificante farmacêutico mais usado no mundo. Adicionado em pó à mistura antes de comprimir, impede que o pó grude nos punções da máquina. Sem ele, os comprimidos saem quebrados ou com peso incorreto. Está em praticamente todo comprimido.', u: 'Fabricantes de comprimidos e cápsulas — praticamente todos', ex: 'Todo comprimido fabricado por prensagem usa Estearato de Magnésio — altíssima rotatividade e compra frequente.' },
+  { n: 'Iodeto de Potássio', s: ['far'], d: 'Fonte de iodo em forma solúvel. Usado para tratar deficiência de iodo (que causa bócio), como expectorante em xaropes para tosse e como proteção em emergências com exposição à radiação nuclear.', u: 'Xaropes expectorantes, comprimidos de iodo, suplementos para tireoide', ex: 'Em emergências nucleares os comprimidos de iodo distribuídos à população são feitos com Iodeto de Potássio.' },
+  { n: 'Iodo Ressublimado', s: ['far'], d: 'Iodo purificado em cristais. Matéria-prima da tintura de iodo e do PVPI (Povidona-Iodo), o antisséptico padrão de hospitais e clínicas. Mata bactérias, fungos e esporos com eficiência.', u: 'Tintura de iodo, PVPI hospitalar, antissépticos domésticos e clínicos', ex: 'O antisséptico laranja usado antes de injeções e cirurgias (PVPI) é feito com Iodo Ressublimado.' },
+  { n: 'Inositol', s: ['far'], d: 'Vitamina do complexo B (B8). Suplemento com crescente uso em Síndrome dos Ovários Policísticos (SOP) e resistência à insulina. Também tem aplicação em cosméticos capilares como fortalecedor de fio.', u: 'Suplementos para SOP e saúde metabólica, cosméticos capilares', ex: 'O mercado de suplementos para SOP cresceu muito nos últimos anos — o Inositol é um dos ativos mais buscados.' },
+  { n: 'Lactose', s: ['far'], d: 'O açúcar do leite, usado em farmácia como excipiente — o "recheio" inerte do comprimido. Dá volume e peso sem interferir no remédio. Atenção importante: contraindicado para intolerantes à lactose.', u: 'Comprimidos, cápsulas e pós farmacêuticos — praticamente todos como diluente', ex: 'Comprimidos de medicamentos são basicamente: ativo + Lactose + lubrificante farmacêutico. Simples assim.' },
+  { n: 'Triclosan', s: ['far','cos'], d: 'Antisséptico de amplo espectro que combate bactérias e fungos. Usado em sabonetes antibacterianos, cremes dentais e produtos hospitalares. O uso é regulamentado pela ANVISA — existem concentrações máximas por tipo de produto.', u: 'Sabonetes antibacterianos, cremes dentais, antissépticos para uso médico', ex: 'Cremes dentais que prometem proteção antibacteriana das gengivas frequentemente contêm Triclosan.' },
+  { n: 'Dipirona Sódica', s: ['far'], d: 'Analgésico e antitérmico mais vendido no Brasil. Disponível em comprimidos, gotas, xaropes e injetável.', u: 'Farmácias de manipulação, laboratórios, hospitais', ex: 'Venda garantida e recorrente em qualquer farmácia de manipulação.' },
+  // DOMISSANITÁRIOS
+  { n: 'Soda Líquida 50%', s: ['ger','dom'], d: 'Hidróxido de sódio em solução líquida 50%. É uma das bases mais usadas na indústria: faz sabão, trata água suja de fábricas, fabrica papel e é base de produtos de limpeza pesada. Dissolve gordura com eficiência.', u: 'Fabricantes de sabão e detergentes, tratamento de efluentes, limpeza industrial pesada', ex: 'Praticamente toda fábrica de produto de limpeza ou sabão é um cliente em potencial.' },
+  { n: 'Dióxido de Titânio', s: ['ger','cos','dom'], d: 'O pigmento branco mais usado no mundo. Em tintas, faz a cor ficar branca e opaca. Em cosméticos, é filtro solar físico que bloqueia raios UV. Em domissanitários branqueia e opacifica produtos de limpeza.', u: 'Fabricantes de tinta, protetores solares, maquiagem, plásticos brancos, papel', ex: 'Se o cliente fabrica protetor solar físico (aquele branco e opaco), ele precisa de Dióxido de Titânio.' },
+  { n: 'Corantes Fluorescentes', s: ['ger','dom'], d: 'Corantes que brilham quando expostos à luz ultravioleta (UV). Em detergentes funcionam como alvejantes ópticos: fazem roupas brancas parecerem mais brancas e brilhantes. Em cosméticos criam efeitos luminosos.', u: 'Detergentes (alvejante óptico), cosméticos com efeito brilhante, materiais de sinalização', ex: 'O "branco brilhante" da roupa recém-lavada vem do alvejante óptico fluorescente presente no detergente.' },
+  { n: 'Corantes Hidro Solúveis', s: ['ger','dom','ali'], d: 'Corantes que se dissolvem facilmente em água — os mais versáteis e seguros. Usados em xampus, sabonetes, alimentos e cosméticos. Alguns tipos são aprovados para uso alimentar pela ANVISA.', u: 'Alimentos, cosméticos, domissanitários — qualquer produto aquoso colorido', ex: 'A cor de refrigerantes, salgadinhos e balas frequentemente vem de corantes hidro solúveis aprovados para alimentos.' },
+  { n: 'Corantes Líquidos', s: ['ger','dom'], d: 'Corantes já prontos em solução — é só adicionar a quantidade necessária sem precisar dissolver nada. Facilitam a produção em linha automatizada e garantem uniformidade de cor lote a lote.', u: 'Fábricas de detergentes, amaciantes, xampus e sabonetes líquidos', ex: 'Fábricas que produzem em escala grande preferem o corante líquido pela praticidade e consistência.' },
+  { n: 'Corantes em Pó', s: ['ger','dom'], d: 'Corantes em forma sólida pulverizada. Têm maior concentração que os líquidos e vida útil mais longa. Indicados quando o cliente tem sistema de dosagem de pó ou processo produtivo seco.', u: 'Sabão em pó, domissanitários sólidos, cosméticos', ex: 'Sabão em pó colorido e detergente em pó usam corantes em pó dispersos na mistura.' },
+  { n: 'Pigmentos Orgânicos', s: ['ger','dom'], d: 'Corantes em forma de partículas sólidas de origem orgânica. Dão cores vivas e brilhantes a tintas, plásticos e cosméticos. Diferente dos corantes solúveis, ficam como partículas dispersas no produto.', u: 'Fabricantes de tinta, plásticos coloridos, cosméticos decorativos, impressão gráfica', ex: 'A cor viva de embalagens plásticas coloridas e tintas de impressão vem dos pigmentos orgânicos.' },
+  { n: 'Pigmentos Inorgânicos', s: ['ger','dom'], d: 'Pigmentos feitos de óxidos metálicos, como óxido de ferro (cor marrom-avermelhada). Mais resistentes ao calor e à luz solar que os orgânicos, preferidos em uso externo e industrial.', u: 'Tintas para uso externo, cimento colorido, cerâmica, cosméticos', ex: 'O tijolo vermelho e o cimento colorido têm sua cor graças a pigmentos inorgânicos de óxido de ferro.' },
+  // TÊXTIL/CORANTES
+  { n: 'Corantes Ácidos', s: ['tex'], d: 'Corantes que tingem fibras de proteína animal: lã, seda e nylon. O nome "ácido" se refere às condições do banho de tingimento (pH ácido), não ao perigo do produto. São solúveis em água e produzem cores vivas e brilhantes.', u: 'Tinturarias de lã, seda e nylon; indústria de couro; papel especial', ex: 'Uma tinturaria que trabalha com lã ou seda vai precisar de corante ácido — não de disperso, que é para poliéster.' },
+  { n: 'Corantes Básicos', s: ['tex'], d: 'Corantes com carga elétrica positiva que se fixam em fibras acrílicas, papel e couro. Produzem cores muito intensas e fluorescentes. Principais para fibras acrílicas (roupas esportivas, tapetes).', u: 'Tinturarias de fibra acrílica, indústria de papel, produtores de couro', ex: 'Roupas esportivas coloridas e brilhantes de tecido acrílico usam corantes básicos.' },
+  { n: 'Corantes Dispersos', s: ['tex'], d: 'Os corantes para o tecido mais comum do mercado atual: o poliéster. São insolúveis em água — ficam em suspensão no banho de tingimento e penetram na fibra através de calor e pressão. A maioria das roupas modernas leva poliéster.', u: 'Tinturarias de poliéster, acetato e nylon sintético', ex: 'Como a maior parte das roupas tem poliéster, o corante disperso é provavelmente o mais vendido no segmento têxtil.' },
+  { n: 'Corantes Reativos', s: ['tex'], d: 'Os melhores corantes para algodão e viscose. Formam uma ligação química permanente com a fibra — por isso a cor dura muito mais lavagens (alta solidez à lavagem). Usados em camisetas, jeans, tecidos de cama, toalhas.', u: 'Tinturarias de algodão, viscose e linho — tecidos naturais', ex: 'Camisetas básicas, jeans e toalhas de algodão são tingidos com corante reativo. É produto de grande volume.' },
+  { n: 'Corantes Solventes', s: ['tex','ger'], d: 'Corantes que se dissolvem em solventes orgânicos mas não em água. Usados para colorir materiais sem água: plásticos, combustíveis, ceras, vernizes e óleos industriais.', u: 'Fabricantes de velas coloridas, plásticos coloridos, combustíveis especiais, vernizes', ex: 'A cor de velas decorativas e plásticos coloridos vem de corantes solventes.' },
+  // SAIS DE LÍTIO
+  { n: 'Carbonato de Lítio', s: ['lit'], d: 'Um dos sais de lítio mais importantes do portfólio. Fabricação de baterias de íon-lítio (celulares, notebooks e carros elétricos) e tratamento médico do transtorno bipolar. Também é usado em cerâmicas e vidros especiais de alta resistência.', u: 'Fabricantes de baterias, indústrias cerâmicas, farmácias, indústrias de vidro especial', ex: 'Com o boom dos carros elétricos, a demanda por Carbonato de Lítio cresceu muito — argumento de venda forte e atual.' },
+  { n: 'Cloreto de Lítio', s: ['lit'], d: 'Sal de lítio que absorve umidade do ar com enorme eficiência. Usado em sistemas de ar condicionado industrial que precisam controlar a umidade do ambiente com precisão. Também tem uso em baterias e na soldagem de alumínio.', u: 'Indústrias com ambientes controlados (eletrônicos, farmacêutica), baterias, soldagem', ex: 'Fábricas de eletrônicos que precisam de ambientes secos são clientes em potencial para este produto.' },
+  { n: 'Fluoreto de Lítio', s: ['lit'], d: 'Sal de lítio usado em tecnologias avançadas: janelas e lentes transparentes a infravermelho (usadas em equipamentos militares e científicos), dosímetros de radiação e eletrólitos em baterias especiais.', u: 'Institutos de pesquisa, defesa, fabricantes de equipamentos de medição', ex: 'É um produto de nicho com poucos fornecedores — um diferencial importante na negociação.' },
+  { n: 'Hidróxido de Lítio', s: ['lit'], d: 'A estrela do mercado de veículos elétricos. Usado nas baterias de lítio de nova geração com mais duração e recarga mais rápida. Também é base para graxas lubrificantes de alta performance para indústrias de alta temperatura.', u: 'Fabricantes de baterias para veículos elétricos, indústrias que usam graxas de alta performance', ex: 'Montadoras e fabricantes de baterias são os maiores compradores — setor em plena expansão.' },
+  { n: 'Octoato de Lítio', s: ['lit'], d: 'Sal de lítio de ácido graxo. Usado em graxas lubrificantes especiais que continuam funcionando em condições extremas onde graxas normais falham: temperaturas muito altas, presença de água e alta pressão.', u: 'Indústrias automotivas, siderúrgicas e alimentícias com equipamentos exigentes', ex: 'Equipamentos pesados que operam continuamente precisam de graxas especiais feitas com Octoato de Lítio.' },
+  { n: 'Silicato de Lítio', s: ['lit'], d: 'Usado principalmente para tornar o concreto mais resistente e durável. Penetra na superfície e reage com ela, deixando-a mais densa. Também usado em tintas resistentes ao calor e revestimentos industriais.', u: 'Construtoras, empresas de piso industrial, fabricantes de tintas para alta temperatura', ex: 'Galpões industriais, garagens e pisos de fábrica que precisam ser mais duros são o mercado típico.' },
+  { n: 'Sulfato de Lítio', s: ['lit'], d: 'Sal de lítio utilizado principalmente em pesquisa química e como matéria-prima para fabricar outros compostos de lítio. Também tem aplicação em eletrólitos de baterias especializadas.', u: 'Laboratórios, indústrias químicas, fabricantes de baterias especiais', ex: 'Clientes típicos: centros de pesquisa, universidades e empresas de desenvolvimento de baterias.' },
+  { n: 'Esterato de Lítio', s: ['lit'], d: 'O "sabão de lítio" — base que dá consistência às graxas lubrificantes. As graxas com base de lítio são as mais usadas no mundo porque aguentam bem tanto calor quanto umidade. São usadas em rolamentos, engrenagens e eixos de veículos.', u: 'Fabricantes de graxas lubrificantes, manutenção industrial, indústria automotiva', ex: 'A graxa que lubrifica rolamentos de motores e eixos de veículos frequentemente tem Esterato de Lítio.' },
+  // GERAL
+  { n: 'Barrilha Densa', s: ['ger'], d: 'Carbonato de sódio em grãos grandes. Usado principalmente na fabricação de vidro (garrafas, janelas), detergentes industriais e papel. A versão "densa" é preferida em processos industriais secos por não empoeirar tanto.', u: 'Fabricação de vidro, detergentes industriais, papel, tratamento de água', ex: 'Toda garrafa de vidro que você vê foi fabricada com ajuda do carbonato de sódio (barrilha).' },
+  { n: 'Barrilha Leve', s: ['ger'], d: 'Carbonato de sódio em grãos finos — dissolve mais rápido na água que a versão densa. Usado em detergentes domésticos, tratamento de piscinas (para corrigir o pH) e limpeza industrial.', u: 'Detergentes, tratamento de piscinas, limpeza industrial, neutralização de pH', ex: 'Quando alguém "trata a piscina" para acertar o pH, frequentemente usa barrilha leve.' },
+  { n: 'Ácido Acrílico', s: ['ger'], d: 'Matéria-prima que dá origem a polímeros absorventes — como o Poliacrilato de Sódio. Usado como dispersante em fabricação de fraldas descartáveis, papéis absorventes e tratamento de água.', u: 'Indústrias de higiene descartável, tratamento de água, papel', ex: 'Sem o Ácido Acrílico, não existiria o gel absorvente das fraldas.' },
+  { n: 'Poliacrilato de Sódio', s: ['ger'], d: 'O superabsorvente das fraldas e absorventes femininos — aquele pó branco que quando molhado vira gel firme e retém o líquido sem vazar. Também usado em géis de gelo (cold packs) e na agricultura para o solo reter água.', u: 'Fabricantes de fraldas e absorventes, géis de resfriamento, agricultura', ex: 'A fralda descartável moderna só funciona graças ao Poliacrilato de Sódio na camada absorvente.' },
+  { n: 'Dissulfeto de Molibdênio', s: ['ger'], d: 'Lubrificante sólido em forma de pó escuro. Funciona em condições extremas onde óleos e graxas normais falham: pressões altíssimas, temperaturas extremas ou ambientes de vácuo como na indústria aeroespacial.', u: 'Fabricantes de óleos e graxas especiais, indústria automotiva pesada, aeroespacial', ex: 'Óleos de motor de alta performance frequentemente contêm Dissulfeto de Molibdênio.' },
+  { n: 'Silicato de Sódio Alcalino', s: ['ger'], d: 'Conhecido como "vidro líquido". Adesivo e ligante industrial versátil como dispersante: cola papelão, protege metais da ferrugem, endurece superfícies de cimento e entra na composição de detergentes industriais fortes.', u: 'Indústrias de embalagem, construção civil, manutenção industrial, detergentes', ex: 'Caixas de papelão corrugado são coladas com silicato de sódio — mercado de grande volume.' },
+  { n: 'Silicato de Sódio Neutro', s: ['ger'], d: 'Versão com menor alcalinidade do silicato de sódio. Usado em papelão corrugado, moldes de fundição de metais e como revestimento protetor em embalagens alimentícias.', u: 'Fabricantes de caixas de papelão, indústrias de fundição', ex: 'Toda caixa de papelão ondulado precisa de adesivo — e o silicato de sódio é um dos mais usados.' },
+];
+
+// Count products per segment
+const segCounts = { cos:0, ali:0, far:0, dom:0, tex:0, lit:0, ger:0 };
+const seen = new Set();
+produtos.forEach(p => {
+  if (seen.has(p.n)) return;
+  seen.add(p.n);
+  p.s.forEach(s => { if (segCounts[s] !== undefined) segCounts[s]++; });
+});
+['cos','ali','far','dom','tex','lit'].forEach(s => {
+  const el = document.getElementById('cnt-'+s);
+  if (el) el.textContent = segCounts[s];
+});
+
+let currentSeg = null;
+
+function selectSeg(seg, btn) {
+  // Toggle
+  if (currentSeg === seg) {
+    currentSeg = null;
+    document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.seg-header').forEach(h => h.classList.remove('active'));
+    document.getElementById('prod-section').style.display = 'none';
+    document.getElementById('welcome').style.display = 'flex';
+    return;
+  }
+  currentSeg = seg;
+  document.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.seg-header').forEach(h => h.classList.remove('active'));
+  document.getElementById('sh-'+seg).classList.add('active');
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('prod-section').style.display = 'block';
+  document.getElementById('psearch').value = '';
+  renderProds();
+}
+
+function linkTerms(txt) {
+  let out = txt;
+  Object.keys(glossario).sort((a,b) => b.length - a.length).forEach(k => {
+    const re = new RegExp('\\b(' + k.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + 's?)\\b', 'gi');
+    out = out.replace(re, m => `<span class="gterm" onclick="event.stopPropagation();openGloss('${k}')">${m}</span>`);
+  });
+  return out;
+}
+
+function openGloss(key) {
+  const g = glossario[key.toLowerCase()];
+  if (!g) return;
+  document.getElementById('mod-title').textContent = g.t;
+  document.getElementById('mod-body').textContent = g.d;
+  document.getElementById('modal-bg').classList.add('on');
+}
+
+function closeModal() {
+  document.getElementById('modal-bg').classList.remove('on');
+}
+
+function closeModalBg(e) {
+  if (e.target.id === 'modal-bg') closeModal();
+}
+
+function renderProds() {
+  if (!currentSeg) return;
+  const q = document.getElementById('psearch').value.toLowerCase();
+  const seenNames = new Set();
+  const list = produtos.filter(p => {
+    if (seenNames.has(p.n)) return false;
+    seenNames.add(p.n);
+    const inSeg = p.s.includes(currentSeg);
+    const matchQ = !q || p.n.toLowerCase().includes(q) || p.d.toLowerCase().includes(q) || (p.u && p.u.toLowerCase().includes(q));
+    return inSeg && matchQ;
+  });
+
+  document.getElementById('pcount').textContent = list.length + ' produto(s) para este segmento';
+  const grid = document.getElementById('pgrid');
+  grid.innerHTML = '';
+
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty"><div class="emoji">🔍</div><p>Nenhum produto encontrado.</p></div>';
+    return;
+  }
+
+  list.forEach(p => {
+    const tags = p.s.map(s => {
+      const labels = { cos:'Cosméticos', ali:'Alimentos', far:'Farmac./Vet.', ger:'Geral', dom:'Domissanitário', tex:'Têxtil', lit:'Sais de Lítio' };
+      return `<span class="ptag t-${s}">${labels[s]||s}</span>`;
+    }).join('');
+
+    const div = document.createElement('div');
+    div.className = 'pcard';
+    div.innerHTML = `
+      <div class="pcard-head">
+        <div>
+          <div class="pcard-name">${p.n}</div>
+          <div class="ptags">${tags}</div>
+        </div>
+        <span class="chev">▾</span>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-body-inner">
+          <div class="dlabel">O que é e para que serve</div>
+          <p>${linkTerms(p.d)}</p>
+          ${p.u ? `<div class="dlabel">Quem compra</div><p>${p.u}</p>` : ''}
+          ${p.ex ? `<div class="dlabel">Exemplo prático</div><div class="ex">${p.ex}</div>` : ''}
+        </div>
+      </div>`;
+    div.querySelector('.pcard-head').addEventListener('click', () => div.classList.toggle('open'));
+    grid.appendChild(div);
+  });
+}
+</script>
+</body>
+</html>
