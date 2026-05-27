@@ -79,6 +79,7 @@
     grid-template-columns: 260px 1fr;
     min-height: calc(100vh - 64px);
   }
+  .layout.hidden { display: none; }
 
   /* SIDEBAR */
   aside {
@@ -268,7 +269,11 @@
   .t-ali { background: var(--amber-light); color: var(--amber); border-color: var(--amber-border); }
   .t-far { background: var(--blue-light); color: var(--blue-dark); border-color: var(--blue-border); }
   .t-ger { background: var(--purple-light); color: var(--purple-dark); border-color: var(--purple-border); }
-  .t-dom { background: var(--coral-light); color: var(--coral-dark); border-color: var(--coral-border); }
+  .t-tex { background:#fff8e1; color:#5d4037; border-color:#ffb300; }
+  .t-lit { background:#e8eaf6; color:#283593; border-color:#5c6bc0; }
+  .t-solv { background:#e0f7fa; color:#006064; border-color:#00acc1; }
+  .t-res { background:#fbe9e7; color:#bf360c; border-color:#ff7043; }
+  .t-ind { background:#f9fbe7; color:#33691e; border-color:#8bc34a; }
   .chev {
     font-size: 18px;
     color: var(--text-hint);
@@ -395,7 +400,92 @@
   }
   .welcome p { color: var(--text-muted); font-size: 14px; max-width: 360px; }
 
-  /* Scrollbar */
+  .top-nav { display:flex; gap:6px; }
+  .tnav { padding:7px 16px; border:1px solid rgba(255,255,255,0.25); border-radius:20px; background:transparent; color:rgba(255,255,255,0.7); font-size:13px; cursor:pointer; font-family:'Inter',sans-serif; transition:all .15s; }
+  .tnav:hover { background:rgba(255,255,255,0.1); color:#fff; }
+  .tnav.active { background:#fff; color:var(--green-dark); font-weight:500; border-color:#fff; }
+
+  /* PRIORITY VIEW */
+  .priority-view { display:none; padding:2rem; overflow-y:auto; }
+  .priority-view.on { display:block; }
+  .prio-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.5rem; }
+  .ptab { padding:8px 18px; border:1px solid var(--border-strong); border-radius:20px; font-size:13px; cursor:pointer; background:var(--surface); color:var(--text-muted); font-family:'Inter',sans-serif; transition:all .15s; }
+  .ptab:hover { border-color:var(--green-light); color:var(--text); }
+  .ptab.on { background:var(--green-dark); color:#fff; border-color:var(--green-dark); }
+  .ptab .badge { display:inline-block; margin-left:6px; background:rgba(255,255,255,0.2); padding:1px 6px; border-radius:10px; font-size:11px; }
+  .ptab:not(.on) .badge { background:var(--bg); color:var(--text-hint); }
+
+  .prio-panel { display:none; }
+  .prio-panel.on { display:block; }
+
+  /* FICHA CARD */
+  .ficha { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:1.25rem; overflow:hidden; }
+  .ficha-head { padding:1.25rem 1.5rem; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; cursor:pointer; user-select:none; }
+  .ficha-head:hover { background:var(--bg); }
+  .ficha.open .ficha-head { background:var(--green-dark); color:#fff; border-radius:var(--radius) var(--radius) 0 0; }
+  .ficha-title { font-family:'Syne',sans-serif; font-size:17px; font-weight:600; }
+  .ficha.open .ficha-title { color:#fff; }
+  .ficha-meta { font-size:12px; color:var(--text-muted); margin-top:3px; display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .ficha.open .ficha-meta { color:rgba(255,255,255,0.65); }
+  .forn-badge { padding:2px 8px; border-radius:20px; font-size:11px; font-weight:600; border:1px solid; }
+  .forn-oregon { background:#fff3e0; color:#b35000; border-color:#f9a825; }
+  .forn-atias { background:#e8f5e9; color:#1b5e20; border-color:#43a047; }
+  .forn-gws { background:#e3f2fd; color:#0d47a1; border-color:#1976d2; }
+  .forn-dixen { background:#f3e5f5; color:#4a148c; border-color:#7b1fa2; }
+  .forn-farkon { background:#fce4ec; color:#880e4f; border-color:#c2185b; }
+  .ficha.open .forn-badge { opacity:.85; }
+  .ficha-arrow { font-size:18px; color:var(--text-hint); transition:transform .2s; flex-shrink:0; }
+  .ficha.open .ficha-arrow { transform:rotate(180deg); color:rgba(255,255,255,0.7); }
+
+  .ficha-body { display:none; }
+  .ficha.open .ficha-body { display:block; }
+
+  .ficha-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0; }
+  .fbox { padding:1.25rem 1.5rem; border-bottom:1px solid var(--border); border-right:1px solid var(--border); }
+  .fbox:last-child { border-right:none; }
+  .fbox-label { font-size:10px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--text-hint); margin-bottom:8px; display:flex; align-items:center; gap:5px; }
+  .fbox-label .lico { font-size:14px; }
+  .fbox p, .fbox li { font-size:13px; color:var(--text); line-height:1.7; }
+  .fbox ul { padding-left:16px; }
+  .fbox li { margin-bottom:3px; }
+
+  .fbox-full { padding:1.25rem 1.5rem; border-bottom:1px solid var(--border); }
+  .fbox-full p { font-size:13px; color:var(--text); line-height:1.7; }
+
+  .arg-list { list-style:none; padding:0; }
+  .arg-list li { font-size:13px; color:var(--text); line-height:1.7; padding:6px 0 6px 22px; position:relative; border-bottom:1px solid var(--border); }
+  .arg-list li:last-child { border-bottom:none; }
+  .arg-list li::before { content:'→'; position:absolute; left:0; color:var(--green-light); font-weight:700; }
+
+  .obj-list { list-style:none; padding:0; }
+  .obj-list li { font-size:13px; line-height:1.7; padding:8px 0; border-bottom:1px solid var(--border); }
+  .obj-list li:last-child { border-bottom:none; }
+  .obj-q { color:var(--text-muted); font-style:italic; margin-bottom:3px; font-size:12px; }
+  .obj-q::before { content:'❓ '; }
+  .obj-a { color:var(--text); }
+  .obj-a::before { content:'✅ '; }
+
+  .seg-tags { display:flex; flex-wrap:wrap; gap:5px; }
+  .seg-tag { font-size:11px; padding:3px 9px; border-radius:20px; border:1px solid var(--green-chip); background:var(--green-pale); color:var(--teal); font-weight:500; }
+
+  .cor-tipo-title { font-family:'Syne',sans-serif; font-size:15px; font-weight:600; color:var(--green-dark); margin:1.5rem 0 0.75rem; padding-bottom:6px; border-bottom:2px solid var(--green-pale); display:flex; align-items:center; gap:8px; }
+  .cor-tipo-title:first-child { margin-top:0; }
+  .cor-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:10px; margin-bottom:1rem; }
+  .cor-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:1rem 1.25rem; cursor:pointer; transition:border-color .15s; }
+  .cor-card:hover { border-color:var(--border-strong); }
+  .cor-card.open { border-color:var(--green-light); }
+  .cor-card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .cor-card-name { font-size:13px; font-weight:500; color:var(--text); line-height:1.3; }
+  .cor-card-body { display:none; margin-top:10px; padding-top:10px; border-top:1px solid var(--border); }
+  .cor-card.open .cor-card-body { display:block; }
+  .cor-card-body p { font-size:12px; color:var(--text-muted); line-height:1.6; }
+  .cor-forn { display:flex; flex-wrap:wrap; gap:4px; margin-top:6px; }
+  .cor-fibra { font-size:11px; margin-top:5px; color:var(--text-hint); }
+  .cor-fibra strong { color:var(--green-mid); }
+
+  .highlight-box { background:var(--green-pale); border:1px solid var(--green-chip); border-radius:var(--radius-sm); padding:10px 14px; font-size:13px; color:var(--teal); margin-bottom:1rem; line-height:1.6; }
+  .highlight-box strong { color:var(--green-dark); }
+
   ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
@@ -426,6 +516,10 @@
     <div class="logo">cadi<span>química</span></div>
     <div class="tagline">Guia do Representante Comercial</div>
   </div>
+  <nav class="top-nav">
+    <button class="tnav active" onclick="switchView('segmentos',this)">📦 Portfólio</button>
+    <button class="tnav" onclick="switchView('priority',this)">⭐ Meus Produtos</button>
+  </nav>
 </header>
 
 <div class="layout">
@@ -461,6 +555,21 @@
       <span class="ico">⚛️</span>
       <span class="seg-name">Sais de Lítio</span>
       <span class="prod-count" id="cnt-lit">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('solv',this)">
+      <span class="ico">🧪</span>
+      <span class="seg-name">Solventes</span>
+      <span class="prod-count" id="cnt-solv">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('res',this)">
+      <span class="ico">🔩</span>
+      <span class="seg-name">Resinas</span>
+      <span class="prod-count" id="cnt-res">0</span>
+    </button>
+    <button class="seg-btn" onclick="selectSeg('ind',this)">
+      <span class="ico">⚗️</span>
+      <span class="seg-name">Químicos Industriais</span>
+      <span class="prod-count" id="cnt-ind">0</span>
     </button>
   </aside>
 
@@ -544,6 +653,45 @@
       </div>
       <div class="tip"><strong>Dica de venda:</strong> Ao abordar clientes que trabalham com baterias, cerâmica ou lubrificantes de alta performance, a exclusividade é o argumento de abertura. Ninguém mais tem esses produtos com representação exclusiva.</div>
     </div>
+    <div class="seg-header" id="sh-solv">
+      <h1>Solventes Industriais</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Fábricas de tinta e verniz</span>
+        <span class="chip">Indústria moveleira</span>
+        <span class="chip">Indústria automotiva</span>
+        <span class="chip">Gráficas (flexografia e rotogravura)</span>
+        <span class="chip">Fabricantes de compósitos e fibra de vidro</span>
+        <span class="chip">Indústrias de limpeza industrial</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Solventes são produtos de compra recorrente e alto volume. Fábricas de tinta e verniz são os maiores consumidores — pergunte sobre o volume mensal e já ofereça proposta de fornecimento contínuo.</div>
+    </div>
+    <div class="seg-header" id="sh-res">
+      <h1>Resinas (Poliéster e Alquídicas)</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Fabricantes de piscinas e banheiras (GRP)</span>
+        <span class="chip">Indústrias de telhas de fibra de vidro</span>
+        <span class="chip">Fabricantes de tinta e esmalte sintético</span>
+        <span class="chip">Indústrias de mármore sintético</span>
+        <span class="chip">Indústrias automotivas e náuticas</span>
+        <span class="chip">Fabricantes de implementos agrícolas</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Resinas poliéster são a base de piscinas, caixas d'água e peças de fibra de vidro. Resinas alquídicas são a base de tintas sintéticas e esmaltes. São mercados enormes e com consumo contínuo.</div>
+    </div>
+    <div class="seg-header" id="sh-ind">
+      <h1>Químicos Industriais Gerais</h1>
+      <p>Quem você vai visitar nesse segmento:</p>
+      <div class="chips">
+        <span class="chip">Indústrias químicas diversas</span>
+        <span class="chip">Fabricantes de plástico e borracha</span>
+        <span class="chip">Indústrias frigoríficas (Nitrito de Sódio)</span>
+        <span class="chip">Fabricantes de tintas e revestimentos</span>
+        <span class="chip">Indústrias farmacêuticas e cosméticas</span>
+        <span class="chip">Produtores de tensoativos e detergentes</span>
+      </div>
+      <div class="tip"><strong>Dica de venda:</strong> Esta linha cobre ingredientes transversais que aparecem em muitas indústrias ao mesmo tempo — BHT, EDTA, Propilenoglicol e Nonil Fenol têm aplicação em alimentos, cosméticos, farmácia e indústria. Um produto, vários clientes.</div>
+    </div>
 
     <!-- PRODUCTS SECTION -->
     <div id="prod-section" style="display:none;">
@@ -556,7 +704,1204 @@
   </main>
 </div>
 
-<!-- MODAL -->
+<!-- PRIORITY VIEW (outside layout grid, full width) -->
+<div class="priority-view" id="priority-view">
+  <div class="prio-tabs">
+    <button class="ptab on" onclick="showPTab('fosfatos',this)">🧂 Fosfatos & Barrilha <span class="badge">5</span></button>
+    <button class="ptab" onclick="showPTab('corantes',this)">🎨 Corantes <span class="badge">20+</span></button>
+  </div>
+
+  <!-- FOSFATOS & BARRILHA -->
+  <div class="prio-panel on" id="pp-fosfatos">
+
+    <!-- HEXAMETAFOSFATO -->
+    <div class="ficha" id="f-hexa">
+      <div class="ficha-head" onclick="toggleFicha('f-hexa')">
+        <div>
+          <div class="ficha-title">Hexametafosfato de Sódio</div>
+          <div class="ficha-meta">
+            <span class="forn-badge forn-oregon">Oregon Química</span>
+            <span>SHMP · Graham's Salt · CAS 10124-56-8</span>
+          </div>
+        </div>
+        <span class="ficha-arrow">▾</span>
+      </div>
+      <div class="ficha-body">
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">📖</span> O que é</div>
+          <p>O Hexametafosfato de Sódio (SHMP) é um sal inorgânico de fósforo com estrutura em cadeia. Apresenta-se como pó ou grânulos brancos, altamente solúvel em água. É um dos fosfatos mais versáteis da indústria química — ao mesmo tempo quelante, dispersante, sequestrate e emulsificante.</p>
+        </div>
+        <div class="ficha-grid">
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">⚙️</span> Como funciona</div>
+            <p>Captura (sequestra) íons de metais como cálcio, magnésio, ferro e manganês presentes na água e nos alimentos. Ao prender esses metais, evita que eles causem efeitos indesejados: dureza da água, precipitação, oxidação de alimentos e perda de textura em carnes.</p>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">🏭</span> Principais usos industriais</div>
+            <ul>
+              <li>Tratamento de água: amolece água dura em caldeiras e torres de resfriamento</li>
+              <li>Alimentos: retém umidade em carnes processadas, frutos do mar e queijos</li>
+              <li>Detergentes: potencializa a limpeza sequestrando minerais que atrapalham o tensoativo</li>
+              <li>Cerâmica: dispersa partículas de argila para melhorar o processamento</li>
+              <li>Papel: dispersa fibras celulósicas na fabricação</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">👥</span> Clientes típicos</div>
+            <ul>
+              <li>Frigoríficos e processadoras de frango, bovino e suíno</li>
+              <li>Indústrias de frutos do mar (camarão, peixe)</li>
+              <li>Fábricas de detergentes e sabões em pó</li>
+              <li>Indústrias de cerâmica e porcelana</li>
+              <li>Empresas de tratamento de água industrial</li>
+              <li>Fábricas de papel e celulose</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">📊</span> Especificações técnicas</div>
+            <ul>
+              <li>Pureza: ≥ 68% P₂O₅</li>
+              <li>pH (solução 1%): 6,0 – 7,5</li>
+              <li>Solubilidade: muito alta em água fria</li>
+              <li>Apresentação: pó branco ou grânulos</li>
+              <li>Embalagem padrão: sacos 25 kg</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">💬</span> Argumentos de venda</div>
+          <ul class="arg-list">
+            <li>Para frigoríficos: "O SHMP retém até 20% mais umidade na carne processada — o produto final pesa mais, tem melhor textura e menos perdas no cozimento."</li>
+            <li>Para indústrias de camarão: "Evita o melanose (manchas pretas) no camarão durante o processamento, mantendo aparência fresca por mais tempo."</li>
+            <li>Para fábricas de detergente: "Potencializa os tensoativos — o detergente limpa melhor com menos quantidade de produto ativo, reduzindo custo de formulação."</li>
+            <li>Para tratamento de água: "Inibe incrustações em caldeiras e tubulações, reduzindo manutenção e tempo de parada de máquinas."</li>
+            <li>Exclusividade Oregon: "Trabalhamos com representação exclusiva da Oregon Química, o que garante abastecimento estável e qualidade certificada."</li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🛡️</span> Objeções e respostas</div>
+          <ul class="obj-list">
+            <li><div class="obj-q">"Já uso outro fosfato, não preciso de mais um."</div><div class="obj-a">"O SHMP tem cadeia mais longa que o tripolifosfato, por isso sequestra metais com mais eficiência em água dura. Se sua água tem muita dureza, o SHMP entrega resultado melhor com menor dose."</div></li>
+            <li><div class="obj-q">"Qual a diferença para o Tripolifosfato?"</div><div class="obj-a">"O SHMP tem maior poder de dispersão e funciona melhor como tratamento de água e cerâmica. O tripolifosfato é mais indicado para alimentos e detergentes. São complementares, não concorrentes."</div></li>
+            <li><div class="obj-q">"Está caro."</div><div class="obj-a">"Calcule pelo custo por tonelada de produto final: como o SHMP usa dosagens menores para o mesmo efeito, o custo unitário é compensado pela eficiência maior."</div></li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🔗</span> Segmentos que compram</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Alimentos e Bebidas</span>
+            <span class="seg-tag">Domissanitários</span>
+            <span class="seg-tag">Tratamento de Água</span>
+            <span class="seg-tag">Cerâmica</span>
+            <span class="seg-tag">Papel e Celulose</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIPOLIFOSFATO -->
+    <div class="ficha" id="f-tripoli">
+      <div class="ficha-head" onclick="toggleFicha('f-tripoli')">
+        <div>
+          <div class="ficha-title">Tripolifosfato de Sódio</div>
+          <div class="ficha-meta">
+            <span class="forn-badge forn-oregon">Oregon Química</span>
+            <span>STPP · STP · CAS 7758-29-4</span>
+          </div>
+        </div>
+        <span class="ficha-arrow">▾</span>
+      </div>
+      <div class="ficha-body">
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">📖</span> O que é</div>
+          <p>O Tripolifosfato de Sódio (STPP) é um dos fosfatos mais consumidos no mundo. Pó branco cristalino, altamente solúvel, com função alcalinizante, quelante e emulsificante. Está presente em duas grandes indústrias ao mesmo tempo: alimentos (retém umidade em proteínas) e limpeza (potencializa detergentes). É um produto de altíssima demanda e compra recorrente.</p>
+        </div>
+        <div class="ficha-grid">
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">⚙️</span> Como funciona</div>
+            <p>Em alimentos: se liga às proteínas da carne e do peixe, aumentando sua capacidade de reter água. Isso melhora a textura, reduz perdas no cozimento e aumenta o peso final do produto. Em detergentes: sequestra cálcio e magnésio da água dura, liberando os tensoativos para limpar a gordura com muito mais eficiência.</p>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">🏭</span> Principais usos industriais</div>
+            <ul>
+              <li>Alimentos: injeção em frangos, presuntos, embutidos e frutos do mar para retenção de umidade</li>
+              <li>Detergentes em pó: builder (construtor) que potencializa a limpeza</li>
+              <li>Sabão em pó industrial e doméstico</li>
+              <li>Cerâmica: defloqulante de argilas</li>
+              <li>Tratamento de superfícies metálicas</li>
+              <li>Pasta dental (como abrasivo suave e estabilizante)</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">👥</span> Clientes típicos</div>
+            <ul>
+              <li>Grandes frigoríficos (JBS, BRF, Marfrig e fornecedores deles)</li>
+              <li>Processadoras de frango e presunto</li>
+              <li>Fábricas de detergente em pó</li>
+              <li>Indústrias de limpeza hospitalar e institucional</li>
+              <li>Cerâmicas e fábricas de porcelana</li>
+              <li>Indústrias de pasta dental</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">📊</span> Especificações técnicas</div>
+            <ul>
+              <li>Pureza: ≥ 57% P₂O₅</li>
+              <li>pH (solução 1%): 9,5 – 10,1</li>
+              <li>Formas: anidro (mais comum) e hexahidratado</li>
+              <li>Apresentação: pó branco cristalino</li>
+              <li>Embalagem padrão: sacos 25 kg</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">💬</span> Argumentos de venda</div>
+          <ul class="arg-list">
+            <li>Para frigoríficos: "O STPP aumenta a retenção de água no frango em até 15-20%. Para uma processadora que produz toneladas por dia, isso representa ganho financeiro direto no peso final do produto."</li>
+            <li>Para fábricas de detergente: "O STPP é o 'builder' padrão — sem ele, o detergente precisa de 30-40% mais tensoativo para limpar com a mesma eficiência em água dura."</li>
+            <li>Para embutidos: "Melhora a textura e coesão de presuntos e mortadelas, além de prolongar a validade ao inibir oxidação lipídica."</li>
+            <li>Versatilidade: "Um produto que vende para frigorífico E para fábrica de detergente — sua carteira de clientes dobra com o mesmo produto."</li>
+            <li>Exclusividade Oregon: "Fornecimento garantido com certificação e rastreabilidade de qualidade."</li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🛡️</span> Objeções e respostas</div>
+          <ul class="obj-list">
+            <li><div class="obj-q">"Ouvi que fosfatos estão sendo retirados dos detergentes por questões ambientais."</div><div class="obj-a">"Correto que alguns países restringiram o uso em detergentes domésticos — mas no Brasil a regulamentação para uso industrial e alimentar segue permitida. E o uso em alimentos está completamente fora dessa restrição."</div></li>
+            <li><div class="obj-q">"Qual a diferença entre o anidro e o hexahidratado?"</div><div class="obj-a">"O anidro (sem água) tem maior concentração de P₂O₅, é mais econômico por quilo de produto ativo. O hexahidratado dissolve mais rápido em água fria — indicado quando o processo não usa aquecimento."</div></li>
+            <li><div class="obj-q">"Já temos fornecedor fixo."</div><div class="obj-a">"Entendo. Posso oferecer uma análise comparativa de preço e pureza? Trabalhamos com certificação Oregon e posso enviar ficha técnica para comparação direta."</div></li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🔗</span> Segmentos que compram</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Alimentos e Bebidas</span>
+            <span class="seg-tag">Domissanitários</span>
+            <span class="seg-tag">Cerâmica</span>
+            <span class="seg-tag">Tratamento de Água</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ÁCIDO CÍTRICO -->
+    <div class="ficha" id="f-citrico">
+      <div class="ficha-head" onclick="toggleFicha('f-citrico')">
+        <div>
+          <div class="ficha-title">Ácido Cítrico</div>
+          <div class="ficha-meta">
+            <span class="forn-badge forn-atias">Atias</span>
+            <span>Anidro e Monoidratado · CAS 77-92-9</span>
+          </div>
+        </div>
+        <span class="ficha-arrow">▾</span>
+      </div>
+      <div class="ficha-body">
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">📖</span> O que é</div>
+          <p>O Ácido Cítrico é um ácido orgânico fraco encontrado naturalmente em frutas cítricas — é o que dá o azedo ao limão e à laranja. Produzido industrialmente por fermentação, é o acidulante mais usado no mundo. Existe em duas formas: <strong>anidro</strong> (sem água, mais concentrado) e <strong>monoidratado</strong> (com uma molécula de água, dissolve mais rápido). É um dos produtos de maior volume e mais fáceis de vender pela enorme diversidade de aplicações.</p>
+        </div>
+        <div class="ficha-grid">
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">⚙️</span> Como funciona</div>
+            <p>Em alimentos: acidifica o produto (dá sabor azedo), conserva inibindo crescimento bacteriano e atua como quelante sequestrando metais que causam oxidação. Em cosméticos: ajusta o pH da fórmula para o nível ideal da pele (4,5–5,5). Em limpeza: reage com calcário e ferrugem dissolvendo-os.</p>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">🏭</span> Principais usos industriais</div>
+            <ul>
+              <li>Bebidas: refrigerantes, sucos, néctares, energéticos</li>
+              <li>Alimentos: balas, geleias, conservas, temperos</li>
+              <li>Cosméticos: ajuste de pH em cremes, xampus, géis</li>
+              <li>Farmácia: efervescentes, xaropes, comprimidos mastigáveis</li>
+              <li>Limpeza: descalcificantes, limpa-fornos, desincrustantes</li>
+              <li>Indústria química: quelante em processos industriais</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">👥</span> Clientes típicos</div>
+            <ul>
+              <li>Fabricantes de refrigerantes e sucos</li>
+              <li>Indústrias de doces, balas e geleias</li>
+              <li>Farmácias de manipulação</li>
+              <li>Fabricantes de cosméticos e higiene pessoal</li>
+              <li>Fábricas de produtos de limpeza doméstica</li>
+              <li>Processadoras de alimentos em geral</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">📊</span> Especificações técnicas</div>
+            <ul>
+              <li>Pureza: ≥ 99,5% (grau alimentar/farmacêutico)</li>
+              <li>Anidro: sem água de cristalização, mais concentrado</li>
+              <li>Monoidratado: 1 molécula de água, dissolve mais rápido</li>
+              <li>pH (solução 1%): ~2,2</li>
+              <li>Embalagem: sacos 25 kg e big bags</li>
+              <li>Fornecedor: Atias (distribuidor autorizado)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">💬</span> Argumentos de venda</div>
+          <ul class="arg-list">
+            <li>Volume e recorrência: "O ácido cítrico é consumido em praticamente toda linha de produção de alimentos e bebidas. Não é compra esporádica — é matéria-prima de pedido mensal garantido."</li>
+            <li>Multiuso: "O mesmo produto serve para o cliente fabricante de refrigerante E para o fabricante de creme hidratante. Um produto, dois mercados completamente diferentes."</li>
+            <li>Para cosméticos: "No ajuste de pH de cosméticos, o ácido cítrico é o padrão da indústria por ser seguro, natural e de custo acessível."</li>
+            <li>Para limpeza: "Em descalcificantes e limpa-cafeteiras, o ácido cítrico está substituindo ácidos mais agressivos por ser biodegradável e seguro."</li>
+            <li>Fornecedor Atias: "Trabalhamos com a Atias, fornecedora com histórico de qualidade certificada e entrega confiável."</li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🛡️</span> Objeções e respostas</div>
+          <ul class="obj-list">
+            <li><div class="obj-q">"Qual a diferença entre o anidro e o monoidratado? Posso usar qualquer um?"</div><div class="obj-a">"Depende do processo. O anidro tem 8,7% mais concentração de ácido ativo — mais econômico para quem usa grandes volumes. O monoidratado dissolve mais rápido em água fria — indicado para processos sem aquecimento. Posso ajudar a calcular qual é mais econômico para o volume do cliente."</div></li>
+            <li><div class="obj-q">"Já compro de outro fornecedor."</div><div class="obj-a">"Faz sentido ter mais de uma opção de fornecimento para um produto tão essencial — qualquer problema no seu fornecedor atual e sua produção para. Posso oferecer um pedido teste para você ter uma segunda fonte homologada?"</div></li>
+            <li><div class="obj-q">"O preço está acima do mercado."</div><div class="obj-a">"O preço do ácido cítrico flutua muito com o câmbio, pois é importado da China. Posso verificar a cotação atualizada — às vezes a diferença é menor do que parece quando se considera frete e prazo."</div></li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🔗</span> Segmentos que compram</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Alimentos e Bebidas</span>
+            <span class="seg-tag">Cosméticos</span>
+            <span class="seg-tag">Farmacêuticos</span>
+            <span class="seg-tag">Domissanitários</span>
+            <span class="seg-tag">Limpeza Industrial</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARRILHA LEVE -->
+    <div class="ficha" id="f-bleve">
+      <div class="ficha-head" onclick="toggleFicha('f-bleve')">
+        <div>
+          <div class="ficha-title">Barrilha Leve</div>
+          <div class="ficha-meta">
+            <span class="forn-badge forn-oregon">Oregon Química</span>
+            <span>Carbonato de Sódio Leve · Na₂CO₃ · CAS 497-19-8</span>
+          </div>
+        </div>
+        <span class="ficha-arrow">▾</span>
+      </div>
+      <div class="ficha-body">
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">📖</span> O que é</div>
+          <p>A Barrilha Leve é o carbonato de sódio de granulometria fina — grãos pequenos que se dissolvem rapidamente em água. É um alcalinizante (eleva o pH) versátil e de baixo custo, um dos produtos químicos básicos mais consumidos no mundo. A diferença entre barrilha leve e densa é apenas o tamanho do grão — o produto químico é idêntico. A leve é preferida quando a dissolução rápida é necessária.</p>
+        </div>
+        <div class="ficha-grid">
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">⚙️</span> Como funciona</div>
+            <p>É uma base fraca que eleva o pH de soluções aquosas. Em piscinas, neutraliza a acidez da água e do cloro. Em detergentes, aumenta a alcalinidade para ajudar a remover gorduras. Em processos industriais, neutraliza ácidos e ajusta o pH de efluentes antes do descarte.</p>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">🏭</span> Principais usos industriais</div>
+            <ul>
+              <li>Tratamento de piscinas: eleva e estabiliza o pH da água</li>
+              <li>Detergentes e sabões: alcalinizante e construtor</li>
+              <li>Tratamento de efluentes: neutralização de águas ácidas</li>
+              <li>Indústria têxtil: preparo de banhos de tingimento</li>
+              <li>Fabricação de vidro: fundente junto com areia e calcário</li>
+              <li>Indústria de papel: processo kraft de polpação</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">👥</span> Clientes típicos</div>
+            <ul>
+              <li>Distribuidoras de produtos para piscina</li>
+              <li>Fábricas de detergentes e sabões</li>
+              <li>Tinturarias têxteis</li>
+              <li>Estações de tratamento de efluentes</li>
+              <li>Indústrias de vidro e cristal</li>
+              <li>Indústrias de papel e celulose</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">📊</span> Especificações técnicas</div>
+            <ul>
+              <li>Pureza: ≥ 99,2% Na₂CO₃</li>
+              <li>Granulometria: fina (100–150 mesh)</li>
+              <li>pH (solução 1%): ~11,6</li>
+              <li>Densidade aparente: 0,45 – 0,65 g/cm³</li>
+              <li>Embalagem: sacos 25 kg e big bags</li>
+              <li>Origem: Oregon Química (representação exclusiva)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">💬</span> Argumentos de venda</div>
+          <ul class="arg-list">
+            <li>Para piscinas: "A barrilha leve dissolve rápido e uniformemente na água — menos risco de manchar o revestimento da piscina comparado com produtos mais concentrados."</li>
+            <li>Para detergentes: "Como builder, a barrilha leve eleva o pH do detergente e potencializa a ação dos tensoativos contra gorduras — produto mais eficiente com menos ingrediente ativo."</li>
+            <li>Para têxtil: "No tingimento reativo de algodão, o carbonato de sódio é o fixador padrão — sem ele o corante não se fixa na fibra. É uma venda garantida para toda tinturaria de algodão."</li>
+            <li>Custo-benefício: "É um produto de base com preço acessível e altíssimo volume de consumo — clientes compram todo mês."</li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🛡️</span> Objeções e respostas</div>
+          <ul class="obj-list">
+            <li><div class="obj-q">"Qual a diferença entre barrilha leve e densa? Qual devo usar?"</div><div class="obj-a">"O produto químico é idêntico — só muda o tamanho do grão. A leve dissolve mais rápido, ideal para processos com água ou mistura. A densa tem grãos maiores, gera menos pó, ideal para manuseio seco em fábricas. Pergunte ao cliente como ele usa: se dissolve em água, vai querer a leve."</div></li>
+            <li><div class="obj-q">"Posso usar soda cáustica no lugar?"</div><div class="obj-a">"A soda cáustica (hidróxido de sódio) é muito mais agressiva — pH acima de 13 e corrosiva. A barrilha tem pH ~11,6 e é mais segura de manusear. Em processos que não precisam de alcalinidade extrema, a barrilha é a escolha mais segura e mais barata."</div></li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🔗</span> Segmentos que compram</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Tratamento de Piscinas</span>
+            <span class="seg-tag">Domissanitários</span>
+            <span class="seg-tag">Têxtil</span>
+            <span class="seg-tag">Tratamento de Água</span>
+            <span class="seg-tag">Vidro</span>
+            <span class="seg-tag">Papel e Celulose</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARRILHA DENSA -->
+    <div class="ficha" id="f-bdensa">
+      <div class="ficha-head" onclick="toggleFicha('f-bdensa')">
+        <div>
+          <div class="ficha-title">Barrilha Densa</div>
+          <div class="ficha-meta">
+            <span class="forn-badge forn-oregon">Oregon Química</span>
+            <span>Carbonato de Sódio Denso · Na₂CO₃ · CAS 497-19-8</span>
+          </div>
+        </div>
+        <span class="ficha-arrow">▾</span>
+      </div>
+      <div class="ficha-body">
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">📖</span> O que é</div>
+          <p>A Barrilha Densa é o carbonato de sódio de granulometria grossa — grãos maiores, mais pesados e mais resistentes à formação de pó. Tem a mesma composição química da barrilha leve, mas sua granulometria maior a torna preferida em processos industriais que envolvem manuseio a seco, silos de armazenamento e transporte pneumático. Gera menos pó, menos perda de material e menos risco de inalação pelos operadores.</p>
+        </div>
+        <div class="ficha-grid">
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">⚙️</span> Como funciona</div>
+            <p>Mesma função química da barrilha leve: alcalinizante, ajustador de pH, neutralizante de ácidos. A diferença está no processo físico: os grãos maiores fluem melhor em sistemas de transporte pneumático de pó, são mais fáceis de ensacar e manuseiam com menos perda por dispersão no ar.</p>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">🏭</span> Principais usos industriais</div>
+            <ul>
+              <li>Fabricação de vidro: principal uso — fundente que reduz o ponto de fusão da sílica</li>
+              <li>Indústria química: neutralização de ácidos em processos industriais</li>
+              <li>Detergentes industriais em pó</li>
+              <li>Fabricação de bicarbonato de sódio</li>
+              <li>Processos que usam silos e transporte pneumático</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">👥</span> Clientes típicos</div>
+            <ul>
+              <li>Vidrarias e cristaleiros</li>
+              <li>Fábricas de embalagens de vidro</li>
+              <li>Indústrias químicas que neutralizam ácidos</li>
+              <li>Fábricas de detergente em pó industrial</li>
+              <li>Processadoras que usam silos a granel</li>
+            </ul>
+          </div>
+          <div class="fbox">
+            <div class="fbox-label"><span class="lico">📊</span> Especificações técnicas</div>
+            <ul>
+              <li>Pureza: ≥ 99,2% Na₂CO₃</li>
+              <li>Granulometria: grossa (mesh menor que a leve)</li>
+              <li>pH (solução 1%): ~11,6</li>
+              <li>Densidade aparente: 0,95 – 1,05 g/cm³</li>
+              <li>Vantagem: menos pó, melhor fluxo em silos</li>
+              <li>Embalagem: sacos 25 kg e big bags</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">💬</span> Argumentos de venda</div>
+          <ul class="arg-list">
+            <li>Para indústria de vidro: "A barrilha densa é o insumo mais importante da fabricação de vidro — reduz o ponto de fusão da sílica de 1700°C para ~1400°C, gerando enorme economia de energia."</li>
+            <li>Para processos com silo: "Com grãos maiores, flui melhor em silos e transportadores pneumáticos — menos entupimento, menos perda de material, menos parada de linha."</li>
+            <li>Segurança operacional: "Gera menos pó que a barrilha leve — ambientes mais limpos, menor risco respiratório para os operadores, menos exigência de EPI."</li>
+            <li>Exclusividade Oregon: "Abastecimento garantido com rastreabilidade de lote e certificação de qualidade."</li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🛡️</span> Objeções e respostas</div>
+          <ul class="obj-list">
+            <li><div class="obj-q">"Qual a diferença prática entre leve e densa para o meu processo?"</div><div class="obj-a">"Se você dissolve em água: leve é melhor (dissolve mais rápido). Se você usa a seco em silos ou misturadores industriais: densa é melhor (flui melhor, menos pó, menos perda). Qual é o seu processo?"</div></li>
+            <li><div class="obj-q">"A composição química é a mesma, por que o preço é diferente?"</div><div class="obj-a">"O processo de fabricação da versão densa exige uma etapa extra de granulação. O custo adicional é compensado pela economia em manuseio: menos perda por pó, menos limpeza, menos troca de filtros."</div></li>
+          </ul>
+        </div>
+        <div class="fbox-full">
+          <div class="fbox-label"><span class="lico">🔗</span> Segmentos que compram</div>
+          <div class="seg-tags">
+            <span class="seg-tag">Fabricação de Vidro</span>
+            <span class="seg-tag">Indústria Química</span>
+            <span class="seg-tag">Domissanitários</span>
+            <span class="seg-tag">Tratamento de Água</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pp-fosfatos -->
+
+  <!-- CORANTES -->
+  <div class="prio-panel" id="pp-corantes">
+
+    <div class="highlight-box">
+      <strong>Fornecedores de Corantes:</strong> GWS (prioridade máxima — têxtil, alimentos, cosméticos, domissanitários e industrial), Dixen e Farkon (linhas complementares específicas). Os corantes da Cadiquímica atendem 7 indústrias diferentes — explore todas nas visitas.
+    </div>
+
+    <!-- NAVEGAÇÃO INTERNA POR INDÚSTRIA -->
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;">
+      <a href="#cor-textil" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">👕 Têxtil</a>
+      <a href="#cor-alimentos" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">🍬 Alimentos</a>
+      <a href="#cor-cosmeticos" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">💄 Cosméticos</a>
+      <a href="#cor-dom" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">🧴 Domissanitários</a>
+      <a href="#cor-papel" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">📄 Papel</a>
+      <a href="#cor-plastico" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">🧱 Plásticos</a>
+      <a href="#cor-couro" style="text-decoration:none;padding:5px 12px;background:var(--bg);border:1px solid var(--border-strong);border-radius:20px;font-size:12px;color:var(--text-muted);">👜 Couro</a>
+    </div>
+
+    <!-- ===== TÊXTIL ===== -->
+    <div id="cor-textil" class="cor-tipo-title">👕 INDÚSTRIA TÊXTIL</div>
+
+    <div class="cor-tipo-title" style="font-size:13px;margin-top:0.5rem;">🟢 Corantes Reativos — Algodão e Viscose</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes Reativos — visão geral</div>
+          <div class="cor-fibra"><strong>Fibra:</strong> Algodão · Viscose · Linho · Modal</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes que formam uma ligação química permanente (covalente) com a celulose da fibra. Por isso a cor é a mais duradoura de todos os tipos — lavagem após lavagem, a cor não desbota. O processo usa fixador alcalino: barrilha leve ou soda cáustica.</p>
+          <p style="margin-top:6px"><strong>Curiosidade técnica:</strong> A reação entre o corante reativo e a celulose é chamada de fixação covalente — o corante literalmente "gruda" na fibra a nível molecular. É por isso que camisetas de algodão tingidas com reativo duram anos sem perder a cor.</p>
+          <p style="margin-top:6px"><strong>Venda combinada:</strong> Barrilha leve (Oregon) é o fixador padrão desse processo. Visite a tinturaria oferecendo corante reativo + barrilha leve juntos — dois produtos seus, uma única visita.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Tinturarias de camiseta, fábricas de jeans, fábricas de toalha e roupa de cama, malharias, estamparias de algodão.</p>
+          <p style="margin-top:6px"><strong>Argumento principal:</strong> "O reativo tem a maior solidez à lavagem do mercado — o cliente final nota a diferença. Produtos com cor duradoura geram menos devolução e mais fidelidade de marca."</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Reactive Black 5</div>
+          <div class="cor-fibra"><strong>O preto mais vendido do mundo para algodão</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Por que é especial:</strong> É o corante reativo de maior volume global. Toda tinturaria de algodão que produz peças pretas (camisetas, calças, uniformes) compra Reactive Black 5 regularmente. É praticamente uma commodity.</p>
+          <p style="margin-top:6px"><strong>Aplicação:</strong> Tingimento por esgotamento ou contínuo de tecidos e fios de algodão e viscose. Exige fixação com barrilha leve ou soda cáustica + sal comum.</p>
+          <p style="margin-top:6px"><strong>Dica de venda:</strong> Na primeira visita a uma tinturaria de algodão, pergunte: "Quanto de Reactive Black você usa por mês?" — já gera abertura para cotação imediata.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Reactive Blue 19, 21, 49</div>
+          <div class="cor-fibra"><strong>Azuis navy e turquesa para algodão</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>RB 19:</strong> Azul brilhante — base para azuis vivos em moda feminina e coleções coloridas.</p>
+          <p style="margin-top:6px"><strong>RB 21:</strong> Turquesa — muito usado em moda praia e fitness (leggings, sungas, biquínis de algodão).</p>
+          <p style="margin-top:6px"><strong>RB 49:</strong> Navy (azul marinho) — padrão de uniformes corporativos e escolares. Alta demanda estável o ano todo.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Reactive Red 195, 239 / Yellow 145</div>
+          <div class="cor-fibra"><strong>Vermelhos e amarelos reativos</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>RR 195:</strong> Vermelho vivo — um dos mais usados em moda feminina, camisetas coloridas e estamparia. Alta solidez à lavagem e à luz.</p>
+          <p style="margin-top:6px"><strong>RR 239:</strong> Vermelho mais frio (bordô/magenta) — moda feminina e decoração têxtil.</p>
+          <p style="margin-top:6px"><strong>RY 145:</strong> Amarelo limão — usado para tons vibrantes de verão e composição de verdes e laranjas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title" style="font-size:13px;">🟠 Corantes Dispersos — Poliéster e Sublimação</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes Dispersos — visão geral</div>
+          <div class="cor-fibra"><strong>Fibra:</strong> Poliéster · Acetato · Nylon sintético · Microfibra</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes insolúveis em água que penetram em fibras sintéticas hidrofóbicas (que repelem água) por calor e pressão (120–130°C). São o tipo de corante de maior volume do mundo — a maioria das roupas modernas contém poliéster.</p>
+          <p style="margin-top:6px"><strong>Curiosidade técnica:</strong> O processo é chamado de tingimento por HT/HP (alta temperatura/alta pressão). Os corantes "abrem" a fibra de poliéster com o calor e penetram nela. Quando esfria, a fibra "fecha" e o corante fica preso dentro — por isso a solidez é alta.</p>
+          <p style="margin-top:6px"><strong>Sublimação digital:</strong> Corantes dispersos em formulação líquida são usados em impressoras de sublimação para estampar camisetas, uniformes e brindes personalizados. Mercado em forte crescimento.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Tinturarias de poliéster, fábricas de uniformes, moda esportiva/fitness, gráficas de sublimação, fábricas de tecido sintético.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Disperse Blue 56, 60, 79</div>
+          <div class="cor-fibra"><strong>Azuis para poliéster — os mais vendidos</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>DB 56:</strong> Azul navy — o corante disperso mais vendido globalmente. Base de uniformes, moda casual e calças de poliéster.</p>
+          <p style="margin-top:6px"><strong>DB 60:</strong> Turquesa/azul royal — moda fitness e beachwear sintético. Alta solidez à luz, ideal para roupas de sol.</p>
+          <p style="margin-top:6px"><strong>DB 79:</strong> Azul marinho escuro — uniformes corporativos, profissionais e escolares em poliéster.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Disperse Red 60, 167 / Yellow 54, 64</div>
+          <div class="cor-fibra"><strong>Vermelhos e amarelos dispersos</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>DR 60:</strong> Vermelho brilhante — moda esportiva, camisetas de time e uniforme vermelho. O vermelho padrão de clubes de futebol é tingido com disperso vermelho.</p>
+          <p style="margin-top:6px"><strong>DR 167:</strong> Bordô/vinho — moda feminina e uniforme de saúde (jalecos vinho).</p>
+          <p style="margin-top:6px"><strong>DY 54:</strong> Amarelo ouro — uniforme de time (amarelo do Brasil), moda esportiva.</p>
+          <p style="margin-top:6px"><strong>DY 64:</strong> Amarelo limão fluorescente — roupas de segurança e colete refletivo em poliéster.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Sublimação Digital</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Camisetas · Brindes · Uniformes personalizados</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que é:</strong> Corante disperso em formulação líquida para tinta de impressora de sublimação. Imprime sobre papel especial e transfere a estampa para poliéster ou superfície revestida (canecas, azulejos, mousepad) com calor (180–210°C).</p>
+          <p style="margin-top:6px"><strong>Mercado em expansão:</strong> Personalização de uniformes esportivos, brindes corporativos, decoração de casa (almofadas, quadros). É um dos mercados que mais crescem na indústria gráfica.</p>
+          <p style="margin-top:6px"><strong>Cliente novo para você:</strong> Gráficas digitais e lojas de brindes personalizados geralmente compram tinta já formulada, mas fabricantes menores de tinta de sublimação compram o corante disperso bruto — um nicho pouco explorado por representantes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title" style="font-size:13px;">🟡 Corantes Ácidos — Lã, Seda, Nylon e Couro</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes Ácidos — visão geral</div>
+          <div class="cor-fibra"><strong>Fibra:</strong> Lã · Seda · Nylon · Couro · Cabelo humano</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes aniônicos (carga negativa) que se fixam em fibras com carga positiva — proteínas animais (lã, seda) e nylon. O tingimento ocorre em pH ácido (4–6), usando ácido acético ou ácido fórmico.</p>
+          <p style="margin-top:6px"><strong>Curiosidade técnica:</strong> A lã e a seda são proteínas (como nosso cabelo) — por isso o mesmo princípio de tintura ácida é usado em tinturas capilares profissionais.</p>
+          <p style="margin-top:6px"><strong>Clientes têxteis:</strong> Tinturarias de fio de lã, fábricas de tapete e carpete, meias de nylon, lingeries, rendas.</p>
+          <p style="margin-top:6px"><strong>Clientes não-têxteis:</strong> Curtumes (tingimento de couro), fabricantes de tinta para cabelo (cosméticos), indústria de papel especial colorido.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Acid Yellow 23 (Tartrazina)</div>
+          <div class="cor-fibra"><strong>Duplo uso: Têxtil + Alimentos</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Por que é especial:</strong> É o único corante ácido com aprovação dupla — serve para tingir nylon E como corante alimentar aprovado pela ANVISA e FDA (código E102). Isso dobra seu mercado com um único produto.</p>
+          <p style="margin-top:6px"><strong>Uso alimentar:</strong> Dá a cor amarela a refrigerantes, balas, gelatinas e sucos artificiais. É o amarelo do Gatorade sabor limão.</p>
+          <p style="margin-top:6px"><strong>Uso têxtil:</strong> Tingimento de nylon em tons amarelos e dourados — meias, lingerie, rendas.</p>
+          <p style="margin-top:6px"><strong>Argumento de venda:</strong> "Com a tartrazina você visita a fábrica de balas E a tinturaria de meias — dois clientes completamente diferentes, um produto."</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Acid Black 1 / Acid Red 52 / Acid Blue 9</div>
+          <div class="cor-fibra"><strong>Os mais vendidos da linha ácida</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Acid Black 1:</strong> Preto intenso para lã e seda — fios pretos de lã para tricô e meias de nylon pretas. Altíssima demanda.</p>
+          <p style="margin-top:6px"><strong>Acid Red 52:</strong> Vermelho fluorescente para lã e nylon — muito usado em artesanato e moda colorida. Também aprovado para cosméticos (corante de batom e sombra).</p>
+          <p style="margin-top:6px"><strong>Acid Blue 9:</strong> Azul brilhante — aprovado para alimentos (E133) E uso têxtil. Outro corante de duplo mercado. É o azul do corante de refrigerante de uva e o azul de tingimento de nylon.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title" style="font-size:13px;">🔵 Corantes Básicos — Acrílico, Papel e Couro</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes Básicos — visão geral</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Acrílico · Papel · Couro · Madeira · Juta</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes catiônicos (carga positiva) que se fixam em substratos com carga negativa — fibras acrílicas, papel, couro e madeira. Produzem as cores mais vivas e brilhantes de qualquer tipo de corante.</p>
+          <p style="margin-top:6px"><strong>Curiosidade técnica:</strong> O corante básico se fixa por atração eletrostática (cargas opostas se atraem). A fibra acrílica tem grupos sulfônicos carregados negativamente que "puxam" o corante positivo e o prendem com força.</p>
+          <p style="margin-top:6px"><strong>Clientes têxteis:</strong> Fábricas de fio acrílico, tapetes e carpetes, cobertores, peluches e pelúcias.</p>
+          <p style="margin-top:6px"><strong>Clientes não-têxteis:</strong> Fábricas de papel colorido, curtumes (acabamento de couro), indústria de móveis (tingimento de madeira e MDF).</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Basic Blue 9 (Azul de Metileno)</div>
+          <div class="cor-fibra"><strong>5 mercados diferentes com 1 produto</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Têxtil:</strong> Tinge acrílico, papel e couro em azul intenso.</p>
+          <p style="margin-top:6px"><strong>Laboratório:</strong> Indicador e corante biológico — usado em microscopia para colorir células e bactérias. Comprado por laboratórios de análise clínica e universidades.</p>
+          <p style="margin-top:6px"><strong>Aquicultura:</strong> Antimicrobiano em tanques de peixe — combate infecções fúngicas em ovos e alevinos. Piscicultures e criadores de peixes ornamentais são clientes.</p>
+          <p style="margin-top:6px"><strong>Medicina:</strong> Antídoto para metemoglobinemia (intoxicação por nitratos) — hospitais e farmácias hospitalares compram.</p>
+          <p style="margin-top:6px"><strong>Argumento:</strong> "Com o Azul de Metileno você pode visitar tinturaria, laboratório, piscicultura e hospital — quatro mercados completamente diferentes com um único produto."</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Basic Violet 10 (Rodamina B)</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Papel · Acrílico · Couro · Laboratório</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Uso industrial:</strong> Rosa/magenta fluorescente intenso para papel de presente, papelaria colorida, acrílico rosa e peluches. Alta intensidade de cor com baixa dosagem.</p>
+          <p style="margin-top:6px"><strong>Uso em laboratório:</strong> Traçador de fluxo — usada em hidrologia e engenharia para rastrear o percurso de água subterrânea ou esgotos. Comprada por empresas de saneamento e universidades.</p>
+          <p style="margin-top:6px"><strong>⚠️ Atenção:</strong> NÃO aprovada para alimentos — importante alertar o cliente para evitar uso incorreto e problemas com ANVISA.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title" style="font-size:13px;">🟣 Corantes Solventes — Plásticos, Ceras, Combustíveis e Óleos</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes Solventes — visão geral</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Plásticos · Ceras · Combustíveis · Vernizes · Óleos lubrificantes</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes solúveis em solventes orgânicos mas insolúveis em água. Usados para colorir materiais sem água — plásticos fundidos, ceras, combustíveis líquidos, vernizes e óleos.</p>
+          <p style="margin-top:6px"><strong>Curiosidade técnica:</strong> Como se dissolvem em gorduras e polímeros, são estáveis em processos de alta temperatura (extrusão e injeção de plástico chegam a 200–300°C).</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fábricas de plástico colorido, fabricantes de velas, distribuidoras de combustível, produtores de verniz e tinta para couro, fabricantes de óleo lubrificante colorido.</p>
+          <p style="margin-top:6px"><strong>Dica esquecida:</strong> Fabricantes de velas decorativas (mercado enorme no Brasil) são clientes de corante solvente que quase nenhum representante visita — é território pouco explorado.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Solvent Red 24, 26 — identificação de combustível</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Combustíveis · Lubrificantes</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Uso regulatório:</strong> No Brasil e no mundo, distribuidoras de combustível colorem o diesel de aquecimento (vermelho) para diferenciá-lo do diesel rodoviário e impedir uso indevido com isenção de impostos. É uso obrigatório por lei em alguns países.</p>
+          <p style="margin-top:6px"><strong>SR 24:</strong> Vermelho padrão para diesel colorido — muito usado por distribuidoras independentes de combustível.</p>
+          <p style="margin-top:6px"><strong>SR 26:</strong> Vermelho mais intenso — para óleos lubrificantes de identificação e combustíveis industriais.</p>
+          <p style="margin-top:6px"><strong>Cliente incomum:</strong> Distribuidoras de combustível e refinarias são clientes que a maioria dos representantes de químicos não pensa em visitar — e podem ser compradores de grande volume.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Solvent Black 7 / Solvent Yellow 56 / Solvent Blue 35</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Plásticos · Couro · Vernizes</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>SB 7:</strong> Preto para plásticos, couro e borracha. Estável ao calor de processamento. Muito usado em solados de sapato e artefatos de borracha preta.</p>
+          <p style="margin-top:6px"><strong>SY 56:</strong> Amarelo para plásticos — embalagens, brinquedos, utensílios domésticos coloridos. Estável em extrusão e injeção.</p>
+          <p style="margin-top:6px"><strong>SBl 35:</strong> Azul para plástico transparente colorido — garrafas PET coloridas, embalagens de cosméticos, peças automotivas coloridas.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ALIMENTOS ===== -->
+    <div id="cor-alimentos" class="cor-tipo-title">🍬 INDÚSTRIA DE ALIMENTOS E BEBIDAS</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes Hidrossolúveis para Alimentos</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Balas · Refrigerantes · Sorvetes · Iogurtes · Geleias</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes solúveis em água, aprovados pela ANVISA para uso alimentar. São os mesmos corantes ácidos e básicos têxteis, mas em grau alimentar (pureza maior, sem impurezas tóxicas).</p>
+          <p style="margin-top:6px"><strong>Regulamentação:</strong> No Brasil, os corantes alimentares são regulamentados pela RDC 8/2021 da ANVISA. Os aprovados têm código INS (ex: INS 102 = tartrazina). Sempre confirme se o corante que vai vender para alimentos tem aprovação ANVISA.</p>
+          <p style="margin-top:6px"><strong>Principais corantes aprovados para alimentos:</strong></p>
+          <p style="margin-top:4px">• <strong>Amarelo Tartrazina (INS 102):</strong> Balas, refrigerantes, gelatina sabor limão</p>
+          <p style="margin-top:4px">• <strong>Amarelo Crepúsculo (INS 110):</strong> Refrigerante laranja, bala de laranja</p>
+          <p style="margin-top:4px">• <strong>Azul Brilhante (INS 133):</strong> Balas azuis, refrigerante de uva, sorvetes</p>
+          <p style="margin-top:4px">• <strong>Vermelho 40 (INS 129):</strong> Balas vermelhas, refrigerante de morango, molhos</p>
+          <p style="margin-top:4px">• <strong>Vermelho Bordeaux (INS 123):</strong> Iogurtes, sorvetes de morango e framboesa</p>
+          <p style="margin-top:4px">• <strong>Corante Caramelo (INS 150):</strong> Refrigerante de cola, cerveja preta, molho shoyu</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de balas e confeitos, indústrias de refrigerante, fábricas de sorvete, produtores de gelatina, indústrias de iogurte e laticínios.</p>
+          <p style="margin-top:6px"><strong>Argumento:</strong> "A cor é o primeiro impacto que o consumidor tem com o produto — uma bala de morango sem cor vermelha não vende. O corante não é custo, é parte da identidade do produto."</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corante Caramelo (INS 150)</div>
+          <div class="cor-fibra"><strong>O corante alimentar mais consumido do mundo</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que é:</strong> Produzido pela caramelização controlada de açúcares. Dá a cor marrom característica a refrigerantes de cola, cervejas escuras, molho shoyu, pão integral escuro e caldos industriais.</p>
+          <p style="margin-top:6px"><strong>Curiosidade:</strong> A Coca-Cola deve boa parte de sua cor ao caramelo IV (classe E). Toda indústria de refrigerante de cola compra esse corante regularmente.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Engarrafadoras de refrigerante, cervejarias artesanais e industriais, produtores de molho shoyu e molhos escuros, padarias industriais de pão integral.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Tintura de Cochonilha (INS 120 — Carmim)</div>
+          <div class="cor-fibra"><strong>Corante natural vermelho para alimentos</strong></div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que é:</strong> Corante natural vermelho-carmim extraído do inseto cochonilha (Dactylopius coccus). É o vermelho natural mais usado em alimentos e cosméticos no mundo. Muito procurado por marcas "clean label" (sem corante artificial).</p>
+          <p style="margin-top:6px"><strong>Tendência de mercado:</strong> Com o crescimento do consumidor consciente que evita corantes artificiais, o carmim ganhou muito espaço. Iogurtes premium, sucos naturais e cosméticos naturais preferem o carmim ao Red 40 artificial.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Iogurtes premium, sucos naturais, embutidos (cor rosa do salame e mortadela), cosméticos naturais, batons "clean beauty".</p>
+          <p style="margin-top:6px"><strong>⚠️ Atenção:</strong> Alergênico potencial — rotulagem obrigatória "contém carmim de cochonilha" para proteção de pessoas com alergia.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Beta Caroteno (INS 160a) — corante natural amarelo/laranja</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Margarinas · Sucos · Iogurtes · Queijos</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que é:</strong> Pigmento natural laranja-amarelado da cenoura e outros vegetais. Além de colorir, é pró-vitamina A (nutriente essencial). Muito usado em margarinas, manteigas, queijos, sucos e iogurtes que precisam de cor amarela natural.</p>
+          <p style="margin-top:6px"><strong>Dupla função:</strong> Corante + nutriente — permite ao fabricante declarar no rótulo "fonte de vitamina A" além de colorir. Um ingrediente com dois benefícios de marketing.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de margarina, laticínios (queijo colorido, manteiga), produtores de suco e néctar, suplementos vitamínicos.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== COSMÉTICOS ===== -->
+    <div id="cor-cosmeticos" class="cor-tipo-title">💄 INDÚSTRIA DE COSMÉTICOS</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Cosméticos — visão geral</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Batons · Sombras · Xampus · Sabonetes · Cremes</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Regulamentação:</strong> No Brasil, corantes cosméticos são regulamentados pela ANVISA (RDC 48/2013). Cada tipo de cosmético tem uma lista permitida diferente — corantes para rinse (que ficam no cabelo) são mais restritos que os para xampus (que enxágua). Sempre confirme a aprovação antes de indicar ao cliente.</p>
+          <p style="margin-top:6px"><strong>Categorias principais:</strong></p>
+          <p style="margin-top:4px">• <strong>Corantes para coloração capilar:</strong> Oxidativos (PPD, resorcinol) e diretos (ácidos e básicos para mechas e colorações sem oxidante)</p>
+          <p style="margin-top:4px">• <strong>Corantes para maquiagem (D&C):</strong> Pigmentos e corantes para batons, sombras, blushes — aprovados para contato com mucosa</p>
+          <p style="margin-top:4px">• <strong>Corantes para produtos de rinse:</strong> Ácidos e básicos que ficam no cabelo tingido</p>
+          <p style="margin-top:4px">• <strong>Corantes para produtos que enxaguam:</strong> Para cor de xampus, condicionadores e sabonetes — menos restritos</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Farmácias de manipulação (coloração capilar), fabricantes de xampus e condicionadores coloridos, fabricantes de maquiagem, fabricantes de sabonete artesanal.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Coloração Capilar</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Tinturas · Mechas · Coloração temporária</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Coloração direta (sem oxidante):</strong> Corantes ácidos e básicos em grau cosmético aplicados diretamente no cabelo. Temporários (duram 4–8 lavagens). Muito usados em coloração fantasia (azul, verde, rosa) e mechas coloridas.</p>
+          <p style="margin-top:6px"><strong>Coloração semi-permanente:</strong> Corantes diretos que penetram na cutícula sem abrir a fibra. Duram 12–24 lavagens. Usados em tonalizantes e glosses coloridos.</p>
+          <p style="margin-top:6px"><strong>Tendência:</strong> Coloração fantasia cresceu muito com as redes sociais — cabelos coloridos em azul, lilás, verde e rosa são tendência constante. Farmácias de manipulação formulam colorações fantasia customizadas.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Farmácias de manipulação, fabricantes de tonalizantes, distribuidores de insumos cosméticos para salões.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Pigmentos D&C para Maquiagem</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Batons · Sombras · Blush · Base</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Pigmentos e corantes aprovados para uso em maquiagem — contato com pele, lábios e mucosas. "D&C" significa Drug & Cosmetic (droga e cosmético) — classificação americana adotada no Brasil.</p>
+          <p style="margin-top:6px"><strong>Pigmentos para batom:</strong> D&C Red 6, 7 e 34 são os vermelhos clássicos de batom. Misturados em diferentes proporções criam do nude ao vermelho intenso.</p>
+          <p style="margin-top:6px"><strong>Pigmentos para sombra:</strong> Óxidos de ferro (marrom, preto, ocre) + pigmentos coloridos. Alta solidez — não migram nem mancham.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de maquiagem, farmácias de manipulação que produzem maquiagem personalizada, marcas de cosmético indie.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Xampus e Sabonetes Coloridos</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Xampus · Sabonetes líquidos · Géis de banho</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes hidrossolúveis (ácidos ou diretos) em grau cosmético. Como o produto enxágua, as exigências de aprovação são menores que os de leave-on (que ficam na pele).</p>
+          <p style="margin-top:6px"><strong>Função:</strong> Além de colorir, o corante comunica o benefício — xampú verde remete a natural/ervas, roxo a frizz control, azul a anticaspa. A cor é parte da linguagem de marketing do produto.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de xampus e condicionadores, produtores de sabonete artesanal (nicho em crescimento), fábricas de gel de banho.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DOMISSANITÁRIOS ===== -->
+    <div id="cor-dom" class="cor-tipo-title">🧴 DOMISSANITÁRIOS E LIMPEZA</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Detergentes e Desinfetantes</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Detergentes · Desinfetantes · Amaciantes · Sabão líquido</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Por que colorir produtos de limpeza?</strong> A cor diferencia o produto na prateleira, comunica o aroma (amarelo = limão, verde = pinho, roxo = lavanda) e evita confusão entre produtos diferentes dentro de uma mesma fábrica.</p>
+          <p style="margin-top:6px"><strong>Corantes líquidos ou hidrossolúveis</strong> são os mais usados aqui — fáceis de dosar e homogeneizar em linha de produção automatizada.</p>
+          <p style="margin-top:6px"><strong>Corantes fluorescentes (alvejantes ópticos):</strong> Adicionados a detergentes de roupa para fazer tecidos brancos parecerem mais brancos e brilhantes sob luz natural. Presente em praticamente todo detergente de roupa do mercado.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de detergente líquido e em pó, produtores de desinfetante, fabricantes de amaciante de roupa, fábricas de água sanitária e alvejante.</p>
+          <p style="margin-top:6px"><strong>Argumento:</strong> "O corante no detergente não é custo — é diferenciação de produto. Um detergente limão sem a cor amarela não transmite a mesma percepção de frescor ao consumidor."</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Alvejantes Ópticos (Corantes Fluorescentes)</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Detergente de roupa · Papel branco · Cosméticos</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Como funcionam:</strong> Absorvem luz ultravioleta (invisível) e re-emitem como luz azul visível — fazendo tecidos e papéis brancos parecerem brilhantes e "mais brancos que o branco". É um truque óptico, não limpeza real.</p>
+          <p style="margin-top:6px"><strong>Curiosidade:</strong> Sob luz UV (lampada negra), roupas lavadas com detergente comum brilham em azul — são os alvejantes ópticos respondendo à luz UV. Baladas usam luz negra justamente para criar esse efeito nas roupas brancas.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Todo fabricante de detergente de roupa, fabricantes de papel offset branco premium, alguns fabricantes de cosméticos (bases e BB creams com efeito luminoso).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PAPEL ===== -->
+    <div id="cor-papel" class="cor-tipo-title">📄 INDÚSTRIA DE PAPEL E EMBALAGEM</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Papel — visão geral</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Papel colorido · Cartolina · Embalagem · Papel tissue</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Tipos usados em papel:</strong> Corantes diretos e ácidos — solúveis em água e com afinidade pela celulose da fibra de papel. Aplicados na massa durante a fabricação (papel colorido por completo) ou em coating de superfície.</p>
+          <p style="margin-top:6px"><strong>Papel tissue colorido (guardanapo, papel toalha, papel higiênico rosa/colorido):</strong> Usa corantes diretos em baixa concentração — a cor precisa ser suave e aprovada para contato com pele.</p>
+          <p style="margin-top:6px"><strong>Cartolina e papel para embalagem:</strong> Cores mais intensas, maior concentração de corante. Papel de presente colorido, caixas de papelão coloridas, cartolinas escolares.</p>
+          <p style="margin-top:6px"><strong>Alvejante óptico em papel offset branco:</strong> Papel premium de impressão usa alvejante óptico para ter brancura superior — fabricantes de papel de escritório de alta qualidade são clientes.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Papelarias industriais, fábricas de papel tissue, fábricas de cartolina, produtores de papel de presente e embalagem.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PLÁSTICOS ===== -->
+    <div id="cor-plastico" class="cor-tipo-title">🧱 INDÚSTRIA DE PLÁSTICOS E BORRACHA</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Pigmentos para Plástico — visão geral</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Embalagens · Brinquedos · Utilidades domésticas · Peças automotivas</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Pigmentos vs corantes em plástico:</strong> Pigmentos são preferidos para plástico porque não migram (não "sangram" para superfícies adjacentes) e têm maior resistência ao calor do processamento (150–300°C). Corantes solventes são usados quando se quer transparência — em PET colorido e PS transparente.</p>
+          <p style="margin-top:6px"><strong>Pigmentos orgânicos:</strong> Cores vivas (vermelho, amarelo, azul, verde) para brinquedos, utensílios coloridos e embalagens. Boa solidez à luz.</p>
+          <p style="margin-top:6px"><strong>Pigmentos inorgânicos:</strong> Maior resistência ao calor e à luz. Óxidos de ferro para tons terrosos e marrons, dióxido de titânio para branco opaco.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Injetoras e extrusoras de plástico, fábricas de brinquedo, fabricantes de embalagem, produtoras de peças automotivas plásticas.</p>
+          <p style="margin-top:6px"><strong>Argumento:</strong> "Masterbatch (concentrado de pigmento em polímero) é feito com os pigmentos que você precisa. Fabricantes de masterbatch são clientes de altíssimo volume de pigmento."</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Velas Decorativas</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Velas de cera · Velas de soja · Velas gel</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Tipo usado:</strong> Corantes solventes — se dissolvem na cera fundida (parafina, cera de soja, estearina) e ficam uniformemente distribuídos. Corantes hidrossolúveis não funcionam em vela, pois cera e água não se misturam.</p>
+          <p style="margin-top:6px"><strong>Mercado crescente:</strong> Velas decorativas e aromáticas explodiram em vendas nos últimos anos. Pequenos produtores artesanais e fábricas de vela são clientes que quase nenhum representante pensa em visitar.</p>
+          <p style="margin-top:6px"><strong>Cores mais pedidas:</strong> Vermelho (natal/decoração), preto (gótico/moderno), rosa e lilás (aromaterapia), branco (casamento/minimalismo).</p>
+          <p style="margin-top:6px"><strong>Dica:</strong> Feiras de artesanato e lojas de insumos para velas são bons canais para identificar produtores que precisam de corante para vela.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== COURO ===== -->
+    <div id="cor-couro" class="cor-tipo-title">👜 INDÚSTRIA DE COURO E CALÇADOS</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Couro — visão geral</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Curtumes · Calçados · Bolsas · Estofados</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Tipos usados em couro:</strong> O couro é proteína animal (colágeno), por isso aceita bem corantes ácidos (mesma lógica da lã e seda). Corantes básicos também são usados em etapas de acabamento. Corantes solventes são usados em tintas de acabamento (como verniz de couro).</p>
+          <p style="margin-top:6px"><strong>Processo de curtimento:</strong> O couro passa por várias etapas — pré-tingimento, tingimento principal e acabamento. Cada etapa pode usar um tipo diferente de corante. Conhecer esse processo impressiona o cliente técnico no curtume.</p>
+          <p style="margin-top:6px"><strong>Cores mais pedidas:</strong> Marrom (clássico), preto (calçado), nude (moda feminina), vermelho (artigos de luxo).</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Curtumes (Franca-SP é o polo calçadista e couretiro principal do Brasil), fabricantes de sapato, indústrias de estofado automotivo e móveis de couro.</p>
+          <p style="margin-top:6px"><strong>Dica geográfica:</strong> Franca (SP) e Nova Serrana (MG) são os principais polos calçadistas do Brasil — visitar curtumes e fábricas de sapato nessas regiões é um mercado inteiro de corante para couro pouco explorado.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head"><div>
+          <div class="cor-card-name">Corantes para Acabamento e Verniz de Couro</div>
+          <div class="cor-fibra"><strong>Aplicação:</strong> Acabamento de sapatos · Bolsas · Cintos</div>
+          <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+        </div><span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span></div>
+        <div class="cor-card-body">
+          <p><strong>Corantes solventes para tinta de couro:</strong> Usados em formulações de tinta e verniz que são aplicadas sobre o couro já curtido para dar cor uniforme, brilho e proteção. Essa tinta é o produto final que dá a cor ao sapato ou bolsa.</p>
+          <p style="margin-top:6px"><strong>Clientes para corante de tinta de couro:</strong> Fabricantes de tinta e acabamento para couro (há fábricas especializadas nisso), além dos próprios curtumes que formulam internamente.</p>
+          <p style="margin-top:6px"><strong>Pigmentos inorgânicos:</strong> Óxido de ferro preto e marrom são muito usados em tintas de couro por ter alta resistência ao atrito — o couro do sapato sofre muito desgaste mecânico e a cor não pode sair fácil.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pp-corantes -->
+
+    <div class="cor-tipo-title">🟡 Corantes Ácidos — para Lã, Seda e Nylon</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes Ácidos (linha geral)</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Lã · Seda · Nylon · Couro</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes aniônicos (carga negativa) que se fixam em fibras com carga positiva como proteínas animais (lã, seda) e nylon. O tingimento acontece em banho ácido (pH 4–6) com auxílio de ácido acético ou sulfúrico.</p>
+          <p style="margin-top:6px"><strong>Características:</strong> Alta solidez à luz, cores vivas e brilhantes, ampla gama de tons. Usados também para tingir cabelo e em papel especial.</p>
+          <p style="margin-top:6px"><strong>Como vender:</strong> "Se você tinge lã ou seda, o corante ácido é o único tipo que funciona corretamente — outros tipos simplesmente não se fixam nessas fibras."</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Tinturarias de fios de lã, fabricantes de tapetes de lã, curtumes (couro), indústria de meias (nylon).</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Acid Yellow (Amarelos Ácidos)</div>
+            <div class="cor-fibra"><strong>Exemplos:</strong> AY 17, AY 23, AY 36, AY 73</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Aplicações:</strong> Tingimento de nylon em tons amarelos e dourados. AY 23 é o corante tartrazina — usado também em alimentos (aprovado ANVISA). Muito usado em indústria de meias e lingerie.</p>
+          <p style="margin-top:6px"><strong>Destaque:</strong> AY 23 (tartrazina) é dual — serve para alimentos e têxtil, o que amplia o leque de clientes.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Acid Red / Blue / Black</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Lã · Seda · Nylon</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Acid Red 52:</strong> Vermelho fluorescente — muito usado em fios de lã para artesanato e moda. Alta solidez à lavagem.</p>
+          <p style="margin-top:6px"><strong>Acid Blue 9:</strong> Azul brilhante — também aprovado para alimentos (corante E133). Alta demanda em têxtil e food.</p>
+          <p style="margin-top:6px"><strong>Acid Black 1:</strong> Preto intenso para lã e seda — muito usado em tinturarias de fio para meias e malharia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title">🔵 Corantes Básicos — para Acrílico e Papel</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes Básicos (linha geral)</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Acrílico · Papel · Couro · Madeira</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes catiônicos (carga positiva) que se fixam em fibras acrílicas com carga negativa. Produzem as cores mais vivas e fluorescentes de todos os tipos de corante.</p>
+          <p style="margin-top:6px"><strong>Atenção técnica:</strong> Não funcionam bem em algodão ou poliéster sem tratamento especial. Se o cliente tinge acrílico e usa outro tipo de corante, é uma oportunidade de venda imediata.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fábricas de fio acrílico, tapetes e carpetes, indústria de papel especial (caixas coloridas, papel offset).</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Basic Blue 9 (Azul de Metileno)</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Acrílico · Papel · Couro</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Uso industrial:</strong> Azul de metileno — um dos corantes básicos mais clássicos. Tinge papel, couro e acrílico em tons azul intenso. Também tem uso em laboratório (indicador biológico) e tratamento de água (antimicrobiano em aquicultura).</p>
+          <p style="margin-top:6px"><strong>Mercado amplo:</strong> Papel, couro, aquicultura e laboratório — quatro mercados com o mesmo produto.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Basic Red / Violet (Rodaminas)</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Acrílico · Papel</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Rodamina B (Basic Violet 10):</strong> Rosado/magenta fluorescente intenso. Muito usado em artigos de papelaria colorida, papel de presente e acrílico rosa vivo.</p>
+          <p style="margin-top:6px"><strong>Atenção de conformidade:</strong> A rodamina B não é aprovada para alimentos — importante informar ao cliente para evitar uso irregular.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title">🟠 Corantes Dispersos — para Poliéster (maior volume do mercado)</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes Dispersos (linha geral)</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Poliéster · Acetato · Nylon sintético</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes insolúveis em água — ficam em suspensão no banho de tingimento e penetram nas fibras hidrofóbicas (que repelem água) por calor e pressão (120–130°C). É o tipo de corante de maior volume no mundo hoje, pois a maioria das roupas tem poliéster.</p>
+          <p style="margin-top:6px"><strong>Classificação por solidez:</strong> SE (baixa temperatura) para acetato. E (temperatura media) para poliéster padrão. SE (alta solidez) para uso técnico e sublimação.</p>
+          <p style="margin-top:6px"><strong>Sublimação:</strong> Muitos corantes dispersos são usados em impressão por sublimação — para estampas em camisetas sintéticas, canecas, mousepad. Mercado crescendo muito.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Tinturarias de poliéster, fabricantes de uniformes, moda esportiva, estamparia por sublimação.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Disperse Yellow / Red / Blue</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Poliéster · Acetato</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>DY 3 e DY 54:</strong> Amarelos para poliéster — base para tons verde, laranja e cor de ouro. Alta solidez à luz.</p>
+          <p style="margin-top:6px"><strong>DR 1 e DR 60:</strong> Vermelhos para poliéster — DR 1 é o vermelho clássico, DR 60 é mais brilhante para moda esportiva.</p>
+          <p style="margin-top:6px"><strong>DB 56 e DB 60:</strong> Azuis para poliéster — os mais vendidos para uniformes e jeans sintético.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes para Sublimação</div>
+            <div class="cor-fibra"><strong>Aplicação:</strong> Estamparia têxtil e brindes</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que é:</strong> Corantes dispersos em formulação especial para tinta de sublimação. Ao serem aquecidos (180–210°C), passam de sólido para gás e penetram na fibra de poliéster ou no revestimento de brindes (canecas, azulejos, mousepad).</p>
+          <p style="margin-top:6px"><strong>Mercado em expansão:</strong> A sublimação é o principal método de personalização de camisetas esportivas, uniformes e brindes personalizados. Um mercado de altíssimo crescimento.</p>
+          <p style="margin-top:6px"><strong>Clientes novos:</strong> Gráficas digitais, lojas de brindes personalizados e fabricantes de uniformes esportivos são clientes que muitas vezes não sabem que pode comprar corante diretamente de representante.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title">🟢 Corantes Reativos — para Algodão e Viscose</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes Reativos (linha geral)</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Algodão · Viscose · Linho · Seda (misto)</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes que formam uma ligação covalente (química, permanente) com a fibra celulósica. Por isso a cor dura muito mais lavagens que qualquer outro tipo — altíssima solidez à lavagem. O processo usa fixador alcalino (barrilha leve ou soda cáustica).</p>
+          <p style="margin-top:6px"><strong>Conexão com outro produto:</strong> A barrilha leve que você também vende (Oregon) é o fixador padrão de corantes reativos. Você pode fazer a venda combinada: corante + barrilha leve. Dois produtos, um cliente, uma visita.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Tinturarias de camiseta, fabricantes de jeans, fábricas de toalha e roupa de cama, malharias de algodão.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Reactive Yellow / Red / Blue / Black</div>
+            <div class="cor-fibra"><strong>Fibra:</strong> Algodão · Viscose</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Reactive Black 5:</strong> O corante preto para algodão mais vendido do mundo — base de calças, camisetas e uniformes pretos. Demanda enorme e contínua.</p>
+          <p style="margin-top:6px"><strong>Reactive Blue 19 e 21:</strong> Azuis navy e royal para algodão — muito usados em uniformes e jeans.</p>
+          <p style="margin-top:6px"><strong>Reactive Red 195:</strong> Vermelho vivo para algodão — um dos mais usados em moda feminina e camisetas coloridas.</p>
+          <p style="margin-top:6px"><strong>Dica de venda:</strong> O Reactive Black 5 é praticamente commodity — toda tinturaria de algodão compra. Pergunte a quantidade mensal e já ofereça cotação na primeira visita.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title">🟣 Corantes Solventes — para Plásticos, Ceras e Combustíveis</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes Solventes (linha geral)</div>
+            <div class="cor-fibra"><strong>Aplicação:</strong> Plásticos · Ceras · Vernizes · Óleos</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Corantes solúveis em solventes orgânicos (acetona, álcool, tolueno) mas insolúveis em água. Usados para colorir materiais que não contêm água — plásticos, combustíveis, ceras, óleos e vernizes.</p>
+          <p style="margin-top:6px"><strong>Usos principais:</strong> Plásticos coloridos (embalagens, brinquedos), velas decorativas, combustíveis (para identificação e diferenciação), couro (acabamento), vernizes coloridos.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de velas, fábricas de plástico colorido, distribuidoras de combustível (identificação de produto), produtores de verniz e couro.</p>
+          <p style="margin-top:6px"><strong>Dica:</strong> Fabricantes de velas decorativas são clientes frequentemente esquecidos pelos representantes — e compram corante solvente todo mês.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Solvent Yellow / Red / Black / Blue</div>
+            <div class="cor-fibra"><strong>Aplicação:</strong> Plásticos e Ceras</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Solvent Yellow 56:</strong> Amarelo para plásticos e ceras — estável ao calor do processamento de polímeros.</p>
+          <p style="margin-top:6px"><strong>Solvent Red 24 e 26:</strong> Vermelhos para combustível diesel (identificação) e para plásticos. SR 24 é muito usado para identificar biodiesel.</p>
+          <p style="margin-top:6px"><strong>Solvent Black 7:</strong> Preto intenso para plásticos e couro. Alta resistência ao calor de processamento.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cor-tipo-title">⚪ Pigmentos — para Tintas, Plásticos e Cosméticos</div>
+    <div class="cor-grid">
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Pigmentos Orgânicos</div>
+            <div class="cor-fibra"><strong>Aplicação:</strong> Tintas · Plásticos · Cosméticos · Impressão</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Diferente dos corantes, os pigmentos não se dissolvem — ficam como partículas sólidas suspensas no produto. Pigmentos orgânicos são baseados em compostos de carbono, produzem cores muito vivas e brilhantes.</p>
+          <p style="margin-top:6px"><strong>Usos principais:</strong> Tintas de impressão (offset, flexo), plásticos coloridos, tintas imobiliárias, cosméticos decorativos (batons, sombras).</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Gráficas, fábricas de tinta, fábricas de plástico, fabricantes de cosméticos decorativos.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Pigmentos Inorgânicos</div>
+            <div class="cor-fibra"><strong>Aplicação:</strong> Tintas externas · Cerâmica · Cimento</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-dixen">Dixen</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>O que são:</strong> Pigmentos baseados em óxidos metálicos (óxido de ferro, óxido de cromo, dióxido de titânio). Altamente resistentes ao calor, à luz solar e a intempéries — por isso são preferidos em aplicações externas e de alta exigência.</p>
+          <p style="margin-top:6px"><strong>Usos principais:</strong> Tintas imobiliárias externas, cimento e concreto colorido, cerâmica, pigmentação de telhas e tijolos.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de tinta imobiliária, construtoras, cerâmicas, fabricantes de telha colorida.</p>
+          <p style="margin-top:6px"><strong>Detalhe importante:</strong> Óxido de ferro vermelho é o pigmento mais barato e mais vendido para cimento colorido — produto de alto volume.</p>
+        </div>
+      </div>
+      <div class="cor-card" onclick="this.classList.toggle('open')">
+        <div class="cor-card-head">
+          <div>
+            <div class="cor-card-name">Corantes Fluorescentes</div>
+            <div class="cor-fibra"><strong>Aplicação:</strong> Detergentes · Cosméticos · Papel</div>
+            <div class="cor-forn"><span class="forn-badge forn-gws">GWS</span><span class="forn-badge forn-farkon">Farkon</span></div>
+          </div>
+          <span class="chev" style="font-size:14px;color:var(--text-hint)">▾</span>
+        </div>
+        <div class="cor-card-body">
+          <p><strong>Alvejantes ópticos:</strong> Tipo especial de corante fluorescente que absorve luz UV e emite luz azul visível — fazendo tecidos brancos parecerem mais brancos e brilhantes. Presente em praticamente todo detergente de roupa.</p>
+          <p style="margin-top:6px"><strong>Corantes neon:</strong> Versão visível — cores fluorescentes para cosméticos, papelaria e sinalizações de segurança.</p>
+          <p style="margin-top:6px"><strong>Clientes:</strong> Fabricantes de detergente de roupa, fabricantes de papel offset branco, cosméticos com efeito luminoso.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pp-corantes -->
+
+</div><!-- /priority-view -->
 <div class="modal-bg" id="modal-bg" onclick="closeModalBg(event)">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -721,17 +2066,79 @@ const produtos = [
   { n: 'Dissulfeto de Molibdênio', s: ['ger'], d: 'Lubrificante sólido em forma de pó escuro. Funciona em condições extremas onde óleos e graxas normais falham: pressões altíssimas, temperaturas extremas ou ambientes de vácuo como na indústria aeroespacial.', u: 'Fabricantes de óleos e graxas especiais, indústria automotiva pesada, aeroespacial', ex: 'Óleos de motor de alta performance frequentemente contêm Dissulfeto de Molibdênio.' },
   { n: 'Silicato de Sódio Alcalino', s: ['ger'], d: 'Conhecido como "vidro líquido". Adesivo e ligante industrial versátil como dispersante: cola papelão, protege metais da ferrugem, endurece superfícies de cimento e entra na composição de detergentes industriais fortes.', u: 'Indústrias de embalagem, construção civil, manutenção industrial, detergentes', ex: 'Caixas de papelão corrugado são coladas com silicato de sódio — mercado de grande volume.' },
   { n: 'Silicato de Sódio Neutro', s: ['ger'], d: 'Versão com menor alcalinidade do silicato de sódio. Usado em papelão corrugado, moldes de fundição de metais e como revestimento protetor em embalagens alimentícias.', u: 'Fabricantes de caixas de papelão, indústrias de fundição', ex: 'Toda caixa de papelão ondulado precisa de adesivo — e o silicato de sódio é um dos mais usados.' },
+
+  // SOLVENTES
+  { n: 'Acetona', s: ['solv','ind'], d: 'Solvente orgânico de evaporação rapidíssima. Dissolve resinas, vernizes, colas e borrachas. É o solvente do removedor de esmalte de unhas, mas industrialmente é muito mais importante: base de thinners, limpeza de moldes, diluição de resinas epóxi e poliéster.', u: 'Fabricantes de tinta, indústria química, laboratórios, indústria de fibra de vidro', ex: 'Todo fabricante de resina de poliéster usa acetona para limpeza de moldes e equipamentos.' },
+  { n: 'Álcool Anidro 99%', s: ['solv','cos','far'], d: 'Etanol com teor de água inferior a 1% — o mais puro disponível para uso industrial. Ideal quando a presença de água no processo é indesejada. Usado em perfumes finos (a água turva a fragrância), síntese química e como solvente de alta pureza em farmácia.', u: 'Perfumaria fina, síntese química, farmácia, laboratórios', ex: 'Perfumes de alta qualidade usam álcool anidro para manter o líquido cristalino — a água causa turbidez.' },
+  { n: 'Álcool Hidratado 96%', s: ['solv','dom','cos'], d: 'Etanol com 4% de água — a versão mais comum e econômica do álcool etílico. Amplamente usado em higienizadores de mão, produtos de limpeza, extração de princípios ativos de plantas e como combustível (álcool combustível é este). Mais barato que o anidro por não precisar da etapa de desidratação.', u: 'Higienizadores, produtos de limpeza, extração vegetal, farmácia de manipulação', ex: 'O álcool 70% antisséptico é feito diluindo álcool hidratado 96% com água.' },
+  { n: 'Álcool Isobutílico (Isobutanol)', s: ['solv'], d: 'Solvente de evaporação média com boa solubilidade em resinas. Usado principalmente em formulações de tinta, verniz e revestimentos — melhora o brilho e a fluidez da tinta aplicada. Também usado em síntese de plastificantes e acetatos.', u: 'Fabricantes de tinta e verniz, indústria química, formuladores de thinner', ex: 'Presente em thinners de alta qualidade para tintas de acabamento industrial.' },
+  { n: 'Álcool Isopropílico (IPA)', s: ['solv','far','dom'], d: 'Solvente de evaporação rápida que não deixa resíduo. Antisséptico eficaz e solvente universal para limpeza de superfícies delicadas como eletrônicos, telas e circuitos. Em farmácia, base de antissépticos tópicos e lenços umedecidos.', u: 'Eletrônica, farmácia, limpeza industrial, cosméticos', ex: 'O álcool dos lenços de limpar tela de celular e monitor é Isopropílico — evapora sem deixar mancha.' },
+  { n: 'Álcool N-Propílico (N-Propanol)', s: ['solv'], d: 'Solvente intermediário entre etanol e butanol. Boa solubilidade em resinas nitrocelulósicas e poliuretano. Usado em tintas de impressão (flexografia), cosméticos e como intermediário químico em síntese.', u: 'Gráficas (tintas de impressão), fabricantes de verniz, cosméticos', ex: 'Tintas de flexografia para embalagem usam N-Propanol por dar boa fluidez e secagem controlada.' },
+  { n: 'Álcool N-Butílico (N-Butanol)', s: ['solv'], d: 'Solvente de evaporação lenta com excelente poder de dissolução de resinas alquídicas, nitrocelulósicas e epóxi. Melhora o nivelamento de tintas — reduz marcas de pincel e rolo. Muito usado em indústria moveleira e automotiva.', u: 'Fabricantes de tinta e verniz, indústria moveleira, indústria automotiva', ex: 'Vernizes para móveis usam N-Butanol para dar acabamento liso sem marcas — ele "nivela" a tinta antes de secar.' },
+  { n: 'Diacetona Álcool (DAA)', s: ['solv'], d: 'Solvente de alta solvência com evaporação lenta e controlada. Dissolve bem resinas poliuretânicas, epóxi e nitrocelulósicas. Sua evaporação lenta melhora o nivelamento de tintas de alta qualidade e reduz defeitos de superfície.', u: 'Tintas de alta qualidade, vernizes automotivos, revestimentos industriais', ex: 'Tintas automotivas de acabamento premium usam DAA para superfície perfeita sem bolhas ou marcas.' },
+  { n: 'Metil Etil Cetona (MEK)', s: ['solv'], d: 'Solvente de alta eficiência e evaporação rápida. Dissolve grande variedade de polímeros e resinas — poliuretano, epóxi, acrílico e poliéster. Muito usado em adesivos industriais, tintas e como agente de limpeza em processos de fibra de vidro.', u: 'Fabricantes de adesivo, tinta e verniz, indústria de fibra de vidro, laminação', ex: 'O MEK Peróxido (catalisador de resina poliéster) tem MEK na composição — toda fábrica de piscina e banheira usa.' },
+  { n: 'Acetato de Butila', s: ['solv'], d: 'Solvente com aroma característico de banana. Excelente para resinas nitrocelulósicas e acrílicas. Amplamente usado em tintas automotivas de repintura, esmaltes industriais e na formulação de thinners de alta qualidade.', u: 'Repinturas automotivas, tintas industriais, fabricantes de thinner premium', ex: 'O cheiro de tinta automotiva recém-aplicada vem em grande parte do acetato de butila.' },
+  { n: 'Acetato de Etila', s: ['solv'], d: 'Solvente rápido com aroma agradável e baixa toxicidade comparado a outros solventes. Muito usado em tintas de impressão, adesivos de embalagem e como solvente em processos farmacêuticos e de alimentos. É o solvente padrão de tintas para embalagem flexível.', u: 'Gráficas, fabricantes de adesivo de embalagem, farmácia, indústria alimentícia', ex: 'As tintas que imprimem embalagens de salgadinho e chocolate usam acetato de etila como solvente principal.' },
+  { n: 'Acetato de N-Propila', s: ['solv'], d: 'Solvente intermediário com boa solvência para resinas acrílicas e nitrocelulósicas. Evaporação mais lenta que o acetato de etila — melhora o nivelamento em tintas de alta qualidade. Usado em tintas para madeira e mobiliário.', u: 'Indústria moveleira, fabricantes de verniz para madeira, tintas de alta qualidade', ex: 'Vernizes para madeira de alta qualidade usam acetato de n-propila para acabamento sem marcas.' },
+  { n: 'Butilglicol (Éter Butílico de Etilenoglicol)', s: ['solv','dom'], d: 'Solvente de evaporação lenta com propriedades de coalescente — ajuda partículas de polímero a se fundirem em tintas à base de água. Essencial em tintas látex imobiliárias. Também usado em produtos de limpeza doméstica pois dissolve gordura e é miscível em água.', u: 'Fabricantes de tinta látex, produtos de limpeza doméstica e industrial, cosméticos', ex: 'Tintas látex imobiliárias contêm Butilglicol como coalescente — sem ele, a tinta não forma filme uniforme.' },
+  { n: 'Éter Metílico de Propilenoglicol (PM)', s: ['solv'], d: 'Solvente glicólico com boa solvência para resinas e compatibilidade com água. Usado em tintas base água de alto desempenho, cosméticos e produtos de limpeza. Evaporação controlada melhora o nivelamento em tintas imobiliárias premium.', u: 'Tintas base água, cosméticos, produtos de limpeza, revestimentos industriais', ex: 'Tintas premium base água para uso profissional usam PM como co-solvente para melhor nivelamento.' },
+  { n: 'Etilglicol (Éter Etílico de Etilenoglicol)', s: ['solv'], d: 'Solvente glicólico miscível em água e solventes orgânicos. Usado como co-solvente em tintas à base de água, fluidos de freio e como inibidor de congelamento em sistemas de resfriamento industrial.', u: 'Tintas base água, fluidos hidráulicos, sistemas de resfriamento industrial', ex: 'Presente em fluidos de freio de alto desempenho e em tintas base água para superfícies metálicas.' },
+  { n: 'Monômero de Estireno', s: ['solv','res'], d: 'Monômero líquido que funciona como diluente reativo de resinas poliéster e viniléster. Diferente de um solvente comum, o estireno não evapora — ele reage e se incorpora à resina durante a cura, fazendo parte da estrutura final. Essencial na fabricação de fibra de vidro, piscinas, banheiras e peças de compósito.', u: 'Fabricantes de piscina e banheira, laminadores de fibra de vidro, fabricantes de peças de compósito', ex: 'Toda piscina de fibra de vidro e toda banheira de acrílico reforçado foi feita com resina poliéster diluída com Estireno.' },
+  { n: 'Thinner para Compósitos', s: ['solv','res'], d: 'Formulado especificamente para diluir resinas poliéster e viniléster usadas em fabricação de compósitos de fibra de vidro. Controla viscosidade sem afetar a cura e as propriedades mecânicas da peça final.', u: 'Fabricantes de piscinas, banheiras, caixas d\'água, peças náuticas e aeronáuticas', ex: 'Fabricantes de piscinas de fibra de vidro usam este thinner para ajustar a viscosidade da resina na laminação.' },
+  { n: 'Thinner para Diluição de Tintas', s: ['solv'], d: 'Formulado para diluir tintas alquídicas, epóxi e poliuretânicas. Balanceia a velocidade de evaporação dos solventes para garantir bom nivelamento e secagem adequada sem defeitos de superfície.', u: 'Pintores industriais, fabricantes de equipamentos, manutenção industrial', ex: 'O thinner correto para cada tipo de tinta é fundamental — usar thinner errado causa defeitos de película, perda de brilho e secagem incorreta.' },
+  { n: 'Thinner para Flexografia e Rotogravura', s: ['solv'], d: 'Formulado para tintas de impressão em embalagem flexível. Controla a viscosidade e velocidade de secagem das tintas nas impressoras de alta velocidade, garantindo qualidade de impressão consistente em polietileno, polipropileno e outros substratos plásticos.', u: 'Gráficas de embalagem flexível, indústrias de impressão de alto volume', ex: 'As embalagens plásticas de alimentos são impressas em velocidades altíssimas — o thinner certo é crítico para qualidade e produtividade.' },
+  { n: 'Thinner para Indústria Moveleira', s: ['solv'], d: 'Formulado para vernizes e lacas nitrocelulósicas e poliuretânicas usadas em mobiliário. Balanceia evaporação para dar acabamento perfeito em cabines de pintura de linha de produção de móveis.', u: 'Fabricantes de móveis, marcenarias industriais, fabricantes de porta e janela', ex: 'Fábricas de móveis retilíneos e sob medida são grandes consumidoras de thinner para madeira.' },
+  { n: 'Thinner para Indústria Automotiva', s: ['solv'], d: 'Formulado para tintas automotivas — bases metálicas, vernizes e primers. Respeita os tempos de flash-off e curvatura das curvas de evaporação exigidas pelas tintas de OEM e repintura automotiva.', u: 'Funilarias, oficinas de repintura, montadoras, fabricantes de peças', ex: 'Oficinas de repintura automotiva são clientes recorrentes de thinner automotivo — compra mensal garantida.' },
+  { n: 'Thinner de Limpeza', s: ['solv','dom'], d: 'Formulado para limpeza de equipamentos, pistolas de pintura, rolos, pincéis e superfícies contaminadas com tinta. Mais econômico que thinners de diluição, com foco em dissolução rápida de resíduos de tinta seca ou fresca.', u: 'Pintores em geral, fábricas de tinta, manutenção industrial, carpintarias', ex: 'Todo pintor industrial e toda fábrica que usa tinta precisa de thinner de limpeza para os equipamentos.' },
+
+  // RESINAS POLIÉSTER
+  { n: 'Resina Poliéster Ortoftálica', s: ['res'], d: 'Resina de propósito geral para laminação de fibra de vidro. É a resina mais comum e econômica — base de piscinas, banheiras, caixas d\'água e peças automotivas em plástico reforçado. Cura com catalisador (MEK Peróxido) em temperatura ambiente, sem necessidade de estufa.', u: 'Fabricantes de piscinas, banheiras, caixas d\'água, peças automotivas em GRP, fabricantes de telha translúcida', ex: 'A piscina de fibra de vidro do quintal é feita de resina ortoftálica laminada manualmente sobre fibra de vidro.' },
+  { n: 'Resina Poliéster Isoftálica', s: ['res'], d: 'Versão superior à ortoftálica com maior resistência química, à umidade e ao envelhecimento. Usada quando o produto final ficará em contato com água por longa data (piscinas premium, tanques industriais) ou exposto a produtos químicos. Também é a base do mármore sintético (bancadas de pia).', u: 'Piscinas premium, tanques industriais, bancadas de mármore sintético, peças náuticas', ex: 'Bancadas de pia de "granito sintético" ou "mármore artificial" são feitas com resina isoftálica + cargas minerais.' },
+  { n: 'Resina Poliéster Tereftálica', s: ['res'], d: 'A mais resistente das resinas poliéster — base reciclada de PET. Combina alta resistência mecânica e química com excelente desempenho em processos de infusão e RTM (injeção em molde fechado). Usada em peças industriais, náuticas e de transporte de alta exigência.', u: 'Peças industriais de alta exigência, componentes náuticos, indústria de transporte, pultrusão', ex: 'Postes e grades de fibra de vidro (mais resistentes que os de madeira) são feitos com resina tereftálica por pultrusão.' },
+  { n: 'Gel Coat (Resina para Gel Coat)', s: ['res'], d: 'Resina poliéster de alta viscosidade aplicada como primeira camada no molde antes da laminação. Forma a camada externa do produto — é a superfície brilhante, colorida e resistente que você vê na piscina ou banheira. O gel coat dá acabamento, cor e proteção UV ao produto final.', u: 'Fabricantes de piscinas, banheiras, embarcações, mobiliário de fibra de vidro', ex: 'A cor azul brilhante da piscina de fibra de vidro é o gel coat — a camada mais externa e visível do laminado.' },
+  { n: 'Resina para Mármore Sintético', s: ['res'], d: 'Resina poliéster isoftálica de alta viscosidade formulada especialmente para produção de bancadas de pia, tanques e pias sintéticas. Misturada com cargas minerais (calcita, alumina) e pigmento cria o aspecto e a textura de mármore ou granito.', u: 'Fabricantes de pia e bancada sintética, marmorarias artificiais, fabricantes de tanque de fibra de vidro', ex: 'Pias de banheiro e bancadas de cozinha em "pedra artificial" são feitas com essa resina + cargas minerais.' },
+
+  // RESINAS ALQUÍDICAS
+  { n: 'Resina Alquídica Curta (Secativa)', s: ['res'], d: 'Resina alquídica com baixo teor de óleo (óleo de soja). Seca rapidamente ao ar e produz filmes duros com excelente brilho. Base de lacas nitrocelulósicas, primers, esmaltes industriais e fundos rápidos. A velocidade de secagem é seu principal diferencial.', u: 'Fabricantes de tinta industrial, esmaltes sintéticos, primers e fundos para metal e madeira', ex: 'Primers industriais que secam rápido para não parar a linha de produção usam resina alquídica curta.' },
+  { n: 'Resina Alquídica Média (Secativa)', s: ['res'], d: 'Equilíbrio entre secagem rápida e flexibilidade. Base de esmaltes sintéticos imobiliários e industriais, tintas automotivas e acabamentos decorativos de alto desempenho. Excelente resistência ao amarelecimento — mantém a cor branca sem amarelamento.', u: 'Fabricantes de esmalte sintético imobiliário, tintas automotivas, esmaltes para implementos agrícolas', ex: 'O esmalte sintético branco que não amarela com o tempo usa resina alquídica média de soja com baixo amarelecimento.' },
+  { n: 'Resina Alquídica Longa (Secativa)', s: ['res'], d: 'Alto teor de óleo (óleo de soja) — seca mais lento mas forma filmes mais flexíveis e com melhor penetração em madeira. Base de vernizes sintéticos imobiliários, esmaltes econômicos e produtos para madeira e metal de uso geral.', u: 'Fabricantes de verniz sintético para madeira, esmaltes econômicos, tintas para metal', ex: 'Vernizes sintéticos "brilho espelho" para madeira de portas e janelas usam resina alquídica longa.' },
+  { n: 'Resina Alquídica Fenolada', s: ['res'], d: 'Resina alquídica modificada com fenol-formaldeído. Seca muito rapidamente e forma filmes de alta dureza e brilho intenso. Usada em esmaltes de secagem rápida, tintas para tambores e embalagens metálicas que precisam de alta resistência química.', u: 'Fabricantes de tinta para tambor e embalagem metálica, esmaltes industriais de alta resistência', ex: 'Tambores metálicos (aqueles barris de 200L) são pintados internamente com tinta à base de resina alquídica fenolada.' },
+  { n: 'Resina Alquídica Modificada (Chain Stopped)', s: ['res'], d: 'Resina alquídica com modificação especial que aumenta o teor de sólidos e a secatividade sem comprometer a compatibilidade. Usada em vernizes e esmaltes de alto teor de sólidos — reduz emissão de solvente (VOC) sem perder desempenho.', u: 'Formuladores de tinta de baixo VOC, esmaltes industriais de alto desempenho, vernizes PU', ex: 'Tendência do mercado de tintas é reduzir solvente (VOC) — resinas chain stopped permitem isso sem perder qualidade.' },
+  { n: 'Resina Alquídica de Óleo de Mamona (Não Secativa)', s: ['res'], d: 'Resina alquídica baseada em óleo de mamona — um óleo não secativo. Por isso não seca ao ar e precisa de endurecedor (isocianato) para curar. É a base de vernizes e esmaltes poliuretânicos bicomponentes de alta qualidade, muito usados em madeira e metal de aplicação interna.', u: 'Vernizes PU para madeira fina, esmaltes bicomponentes para metal, móveis de alto padrão', ex: 'Vernizes de dois componentes (base + catalisador) para madeira de alta qualidade usam resina de mamona como base.' },
+
+  // QUÍMICOS INDUSTRIAIS
+  { n: 'Nitrito de Sódio (Técnico)', s: ['ind'], d: 'Sal inorgânico com forte ação oxidante. Versão técnica usada como inibidor de corrosão em fluidos de usinagem, sistemas de resfriamento e tubulações industriais. Também usado em tratamento de metais (formação de camada protetora) e como intermediário em síntese orgânica.', u: 'Indústrias metalúrgicas, sistemas de resfriamento industrial, tratamento de superfícies metálicas', ex: 'Fluidos de corte usados em usinagem de metal frequentemente contêm nitrito de sódio como anticorrosivo.' },
+  { n: 'Nitrito de Sódio (Food Grade)', s: ['ind','ali'], d: 'Versão grau alimentar do nitrito de sódio. Usado como conservante e fixador de cor em carnes curadas — presunto, salame, mortadela, bacon e outros embutidos. Inibe o crescimento de Clostridium botulinum (bactéria do botulismo) e mantém a cor rosada característica dos embutidos. Uso regulamentado pela ANVISA com limite máximo definido.', u: 'Frigoríficos, fabricantes de embutidos, processadoras de carne curada', ex: 'O presunto e a mortadela têm cor rosada e não estragam rápido graças ao nitrito de sódio — sem ele a carne ficaria cinza e com risco de botulismo.' },
+  { n: 'Ciclohexanona', s: ['ind','solv'], d: 'Solvente cetônico de alta solvência para PVC, poliuretano e resinas especiais. Muito usado em tintas e adesivos para PVC (encanamento, calhas, conexões) e como solvente em revestimentos de alta resistência química.', u: 'Fabricantes de adesivo para PVC, tintas de alta resistência, indústria de revestimentos anticorrosivos', ex: 'O adesivo que cola encanamentos de PVC (aquele líquido com cheiro forte) tem Ciclohexanona como solvente principal.' },
+  { n: 'Dimetilformamida (DMF)', s: ['ind'], d: 'Solvente polar aprótico de alto poder de dissolução — dissolve polímeros que outros solventes não conseguem, como poliuretano, poliamida e resinas especiais. Usado na fabricação de fibras sintéticas (como o lycra/spandex), membranas de filtração e como solvente em síntese química.', u: 'Fabricantes de fibra elastana (lycra), membranas industriais, síntese química, laboratórios', ex: 'A lycra dos calcinhas, meias e roupas esportivas elásticas é fabricada usando DMF como solvente.' },
+  { n: 'N-Metil-2-Pirrolidona (NMP)', s: ['ind'], d: 'Solvente polar de alta performance com baixa toxicidade comparado ao DMF. Dissolve polímeros de alta performance como poliimida, PVDF e poliuretano. Usado na fabricação de baterias de lítio (eletrodo), membranas de filtração e decapagem de tintas especiais.', u: 'Fabricantes de baterias de lítio, membranas de filtração, decapagem de revestimentos especiais', ex: 'Eletrodos de baterias de lítio (celulares, veículos elétricos) são fabricados com NMP como solvente do processo.' },
+  { n: 'Butildiglicol', s: ['ind','solv','dom'], d: 'Solvente glicólico de evaporação muito lenta com excelente poder de dissolução e baixa toxicidade. Usado em produtos de limpeza doméstica e industrial de alto desempenho (limpa-fornos, multiuso concentrado), pois dissolve gordura acumulada e age lentamente para maior eficiência.', u: 'Produtos de limpeza doméstica e industrial concentrados, tintas base água', ex: 'Limpa-fornos e multiusos concentrados que agem em gordura encrostada usam Butildiglicol para dissolução lenta e eficaz.' },
+  { n: 'Dietilenoglicol (DEG)', s: ['ind'], d: 'Diol viscoso usada como intermediário químico na produção de resinas poliéster e poliuretano. Também usado como plastificante, umectante em indústria têxtil (evita que o fio quebre por ressecamento) e como componente de fluidos anticongelantes.', u: 'Fabricantes de resina poliéster, indústria têxtil, produtores de anticongelante', ex: 'Resinas poliéster flexíveis usam DEG como diol modificador para reduzir a rigidez e aumentar a elasticidade.' },
+  { n: 'Monoetilenoglicol (MEG)', s: ['ind'], d: 'O glicol mais produzido do mundo. Principal matéria-prima do PET (garrafas plásticas e fibra de poliéster) e do anticongelante automotivo. Em cosméticos, umectante e solvente. Em indústria têxtil, usado em processos de tingimento de poliéster como auxiliar de tingimento.', u: 'Fabricantes de PET, anticongelante automotivo, têxtil (tingimento de poliéster), cosméticos', ex: 'O anticongelante do radiador do carro é basicamente MEG + água. E toda garrafa PET começa com MEG como matéria-prima.' },
+  { n: 'Propilenoglicol (PG)', s: ['ind','cos','ali','far'], d: 'Diol de baixa toxicidade e múltiplos usos — umectante em cosméticos e alimentos, solvente de flavorizantes e fragrâncias, anticongelante não tóxico (usado em sistemas de resfriamento de alimentos onde o MEG seria perigoso) e veículo de ativos farmacêuticos.', u: 'Cosméticos, alimentos (umectante), farmácia (solvente), anticongelante alimentar, flavorizantes', ex: 'O vapor dos cigarros eletrônicos (e-cigarettes) é basicamente Propilenoglicol + glicerina + nicotina e flavorizante.' },
+  { n: 'Dietanolamina (DEA)', s: ['ind','cos'], d: 'Alcanolamina usada como agente de pH, emulsificante e espessante em cosméticos. Reage com ácidos graxos para formar sabões (como o Coco DEA em xampus) que espessam e estabilizam a espuma. Em indústria, usada como absorvedora de CO₂ e H₂S em gás natural.', u: 'Cosméticos (formação de sabões como Coco DEA), indústria de gás (absorção de ácidos), têxtil', ex: 'A "Dietanolamida" (Amida 90) dos xampus é derivada da DEA — reage com óleo de coco para formar o espessante.' },
+  { n: 'Monoetanolamina (MEA)', s: ['ind','cos','far'], d: 'Alcanolamina básica (pH ~12) usada para ajustar pH em cosméticos e tintas. Em coloração capilar, a MEA substitui a amônia tradicional para abrir a cutícula do cabelo com menos odor. Em indústria de gás natural, remove CO₂ e H₂S. Em tintas base água, neutraliza resinas acrílicas.', u: 'Coloração capilar "sem amônia", tintas base água, cosméticos, indústria de gás', ex: 'Tinturas de cabelo "sem amônia" usam MEA no lugar da amônia — abre a cutícula com menos cheiro forte.' },
+  { n: 'BHT (Butil Hidroxi Tolueno)', s: ['ind','ali','cos'], d: 'Antioxidante sintético fenólico de amplo uso. Previne oxidação em óleos, gorduras, polímeros e borracha. Em alimentos, protege óleos vegetais e gorduras animais do ranço. Em plásticos e borracha, retarda o envelhecimento e o ressecamento. Em cosméticos, estabiliza ingredientes sensíveis à oxidação.', u: 'Alimentos (óleos e gorduras), plásticos e borracha, cosméticos, ração animal', ex: 'Ração pet com prazo de validade longo usa BHT para evitar que as gorduras da ração fiquem rançosas.' },
+  { n: 'EDTA Dissódico', s: ['ind','cos','ali'], d: 'Quelante que captura (sequestra) íons metálicos — cálcio, ferro, magnésio e outros. Ao neutralizar esses metais, evita a oxidação, o escurecimento e a degradação de produtos. Em cosméticos, prolonga a validade. Em alimentos, mantém cor e sabor. Em limpeza industrial, remove incrustações de calcário.', u: 'Cosméticos, alimentos processados, limpeza industrial (descalcificação), farmácia', ex: 'O produto descalcificante de máquina de café usa EDTA para dissolver os depósitos de calcário internos.' },
+  { n: 'EDTA Tetrassódico', s: ['ind','cos','ali'], d: 'Versão mais solúvel e mais alcalina do EDTA. Quelante mais eficiente em pH alto. Usado em produtos de limpeza industrial alcalinos, detergentes institucionais e formulações cosméticas de pH mais alto. Mais eficaz que o Dissódico em águas muito duras.', u: 'Detergentes industriais, limpeza institucional, cosméticos alcalinos, tratamento de água', ex: 'Produtos de limpeza industrial para pisos e superfícies usam EDTA Tetrassódico para descalcificar e potencializar a limpeza.' },
+  { n: 'ATBC (Acetil Tributil Citrato)', s: ['ind'], d: 'Plastificante não tóxico derivado do ácido cítrico. Substituto do plastificante DOP (ftalato) em aplicações que exigem baixa toxicidade — filmes plásticos para alimentos, brinquedos infantis, embalagens médicas e dispositivos descartáveis de saúde.', u: 'Embalagens de alimento em PVC, brinquedos infantis de PVC macio, dispositivos médicos descartáveis', ex: 'Filmes plásticos de PVC para embrulhar alimentos usam ATBC como plastificante — é aprovado para contato alimentar.' },
+  { n: 'DIBP (Di Isobutil Ftalato)', s: ['ind'], d: 'Plastificante de ftalato usado em PVC para dar flexibilidade. Alternativa mais econômica ao DOP para aplicações de menor exigência. Usado em cabos elétricos, mangueiras, pisos vinílicos e couro sintético onde se precisa de PVC macio e flexível.', u: 'Cabos elétricos, mangueiras, pisos vinílicos, couro sintético (courvin)', ex: 'O courvin macio das cadeiras de escritório e o couro do banco de carro são PVC plastificado com ftalatos como DIBP.' },
+  { n: 'DOP (Dioctil Ftalato)', s: ['ind'], d: 'O plastificante de PVC mais usado no mundo. Dá flexibilidade ao PVC rígido em grande variedade de aplicações: mangueiras, cabos elétricos, pisos, lonas, brinquedos, materiais de construção. Sem plastificante, o PVC seria quebradiço como plástico de CD.', u: 'Cabos elétricos, mangueiras, lonas, pisos vinílicos, brinquedos, materiais de construção', ex: 'A mangueira de jardim maleável, a lona de caminhão e o cabo elétrico flexível — todos são PVC + DOP.' },
+  { n: 'TBC (Tributil Citrato)', s: ['ind'], d: 'Plastificante de citrato sem acetilação. Baixa toxicidade e boa performance em PVC e polímeros biodegradáveis. Usado em embalagens flexíveis, filmes de PVC e como plastificante em polímeros de base natural (PLA, amido). Alternativa sustentável aos ftalatos.', u: 'Embalagens flexíveis de PVC, polímeros biodegradáveis, filmes para alimentos', ex: 'Embalagens de PVC macio para frios e queijos em supermercado usam plastificantes de citrato como TBC.' },
+  { n: 'Nonil Fenol Etoxilado (NF4, NF6, NF9,5)', s: ['ind','dom'], d: 'Tensoativos não iônicos derivados do nonil fenol etoxilado. O número (4, 6, 9,5) indica o grau de etoxilação — quanto maior o número, mais hidrofílico e solúvel em água. NF4: mais hidrofóbico, melhor para emulsificação de óleos. NF9,5: mais solúvel em água, melhor para detergentes e limpeza. Usados em formulações industriais de limpeza, emulsificação de pesticidas, têxtil e produção de látex.', u: 'Detergentes industriais, emulsificação de pesticidas agrícolas, têxtil, produção de látex e borracha', ex: 'Defensivos agrícolas em formulação emulsionável (aqueles que ficam brancos quando misturados em água) usam Nonil Fenol como emulsificante.' },
 ];
 
+
+
 // Count products per segment
-const segCounts = { cos:0, ali:0, far:0, dom:0, tex:0, lit:0, ger:0 };
+const segCounts = { cos:0, ali:0, far:0, dom:0, tex:0, lit:0, ger:0, solv:0, res:0, ind:0 };
 const seen = new Set();
 produtos.forEach(p => {
   if (seen.has(p.n)) return;
   seen.add(p.n);
   p.s.forEach(s => { if (segCounts[s] !== undefined) segCounts[s]++; });
 });
-['cos','ali','far','dom','tex','lit'].forEach(s => {
+['cos','ali','far','dom','tex','lit','solv','res','ind'].forEach(s => {
   const el = document.getElementById('cnt-'+s);
   if (el) el.textContent = segCounts[s];
 });
@@ -807,7 +2214,7 @@ function renderProds() {
 
   list.forEach(p => {
     const tags = p.s.map(s => {
-      const labels = { cos:'Cosméticos', ali:'Alimentos', far:'Farmac./Vet.', ger:'Geral', dom:'Domissanitário', tex:'Têxtil', lit:'Sais de Lítio' };
+      const labels = { cos:'Cosméticos', ali:'Alimentos', far:'Farmac./Vet.', ger:'Geral', dom:'Domissanitário', tex:'Têxtil', lit:'Sais de Lítio', solv:'Solventes', res:'Resinas', ind:'Quím. Industrial' };
       return `<span class="ptag t-${s}">${labels[s]||s}</span>`;
     }).join('');
 
@@ -832,6 +2239,29 @@ function renderProds() {
     div.querySelector('.pcard-head').addEventListener('click', () => div.classList.toggle('open'));
     grid.appendChild(div);
   });
+}
+
+function switchView(view, btn) {
+  document.querySelectorAll('.tnav').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (view === 'segmentos') {
+    document.querySelector('.layout').classList.remove('hidden');
+    document.getElementById('priority-view').style.display = 'none';
+  } else {
+    document.querySelector('.layout').classList.add('hidden');
+    document.getElementById('priority-view').style.display = 'block';
+  }
+}
+
+function showPTab(tab, btn) {
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.prio-panel').forEach(p => p.classList.remove('on'));
+  document.getElementById('pp-' + tab).classList.add('on');
+}
+
+function toggleFicha(id) {
+  document.getElementById(id).classList.toggle('open');
 }
 </script>
 </body>
